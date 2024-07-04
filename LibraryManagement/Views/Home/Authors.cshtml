@@ -1,0 +1,30 @@
+﻿@model IEnumerable<LibraryManagement.Controllers.HomeController.Author>
+
+@{
+    ViewBag.Title = "Authors";
+}
+
+<div class="container">
+    <h2>Authors</h2>
+    <div class="row">
+        @foreach (var author in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="@author.ImageUrl" alt="@author.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@author.Name</h5>
+                        <p class="card-text">@author.About</p>
+                        <h6>Books:</h6>
+                        <ul>
+                            @foreach (var book in author.Books)
+                            {
+                                <li>@book.Title</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

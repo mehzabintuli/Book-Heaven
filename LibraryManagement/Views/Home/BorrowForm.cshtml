@@ -1,0 +1,44 @@
+﻿@model LibraryManagement.Controllers.HomeController.BorrowModel
+
+@{
+    ViewBag.Title = "Borrow Book";
+}
+
+<h2>Borrow Book</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm("Borrow", "Home", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.BookId) <!-- Hidden field to pass BookId -->
+            <div class="form-group">
+                <label for="Name">Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @id = "Name" })
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "Email" })
+            </div>
+            <div class="form-group">
+                <label for="Contact">Contact</label>
+                @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", @id = "Contact" })
+            </div>
+            <div class="form-group">
+                <label for="IssueDate">Book Issue Date</label>
+                @Html.TextBoxFor(m => m.IssueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @id = "IssueDate", @type = "date" })
+            </div>
+            <div class="form-group">
+                <label for="ReturnDate">Book Return Date</label>
+                @Html.TextBoxFor(m => m.ReturnDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @id = "ReturnDate", @type = "date" })
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        }
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success mt-3">@ViewBag.Message</div>
+        }
+    </div>
+    <div class="col-md-4">
+        <img src="@ViewBag.BookImageUrl" alt="Book Image" style="width: 100%; height: auto;" />
+    </div>
+</div>

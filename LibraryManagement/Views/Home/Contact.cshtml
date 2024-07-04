@@ -1,0 +1,164 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Use your main layout
+}
+
+<div class="contact-container">
+    <div class="contact-left">
+        <div class="contact-image">
+            <img src="~/Content/Images/contact.jpg" alt="Contact Us" class="img-fluid" />
+        </div>
+        <div class="contact-info">
+            <h4>Reach Us</h4>
+            <ul class="list-unstyled">
+                <li>Contact Number: +880 1324567834</li>
+                <li>Email: bookheaven@gmail.com</li>
+            </ul>
+
+            <h4>Social Media</h4>
+            <ul class="list-unstyled">
+                <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+                <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="contact-right">
+        <h1 class="contact-heading">Contact Us</h1>
+        <div class="contact-form">
+            <form method="post" action="@Url.Action("Contact", "Home")">
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="email" class="form-control" id="Email" name="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="Subject">Subject</label>
+                    <select class="form-control" id="Subject" name="Subject">
+                        <option>General Inquiry</option>
+                        <option>Technical Support</option>
+                        <option>Feedback</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Message">Message</label>
+                    <textarea class="form-control" id="Message" name="Message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary small-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .contact-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 20px;
+        background: #F8F8F8;
+        font-family: Arial, sans-serif;
+    }
+
+    .contact-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-right: 20px;
+    }
+
+    .contact-image {
+        width: 16rem; /* 16x16 image size */
+        height: 16rem;
+        margin-bottom: 20px;
+    }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .contact-info {
+        text-align: center;
+    }
+
+        .contact-info h4 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #000;
+        }
+
+        .contact-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .contact-info ul li {
+                font-size: 1em;
+                margin: 5px 0;
+                color: #333;
+            }
+
+    .social-media {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+        .social-media a {
+            font-size: 1.5em;
+            color: #000;
+        }
+
+            .social-media a:hover {
+                color: #007BFF;
+            }
+
+    .contact-right {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 20px;
+        background: #FFF;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-heading {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #008000; /* Set heading color to green */
+    }
+
+    .contact-form {
+        width: 100%;
+        max-width: 400px;
+    }
+
+        .contact-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .contact-form .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+        }
+
+    .btn-primary {
+        background-color: #008000; /* Set button color to green */
+        color: #FFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-primary.small-btn {
+            width: auto;
+            padding: 10px 20px;
+        }
+</style>
