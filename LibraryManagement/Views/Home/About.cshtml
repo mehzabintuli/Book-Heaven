@@ -1,0 +1,103 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Use your main layout
+}
+
+<div class="about-container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Content/Images/about.jpg" alt="About Us" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+            <h1>About Us</h1>
+            <p>
+                Welcome to Book Heaven, your ultimate destination for a wide range of books across various genres.
+                Our library aims to provide readers with easy access to knowledge and entertainment. Our collection is
+                curated with care to cater to book lovers of all ages and preferences. Join us on this literary journey
+                and explore the world of books.
+            </p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h4>Our Mission</h4>
+            <p>
+                Our mission is to provide easy access to a comprehensive range of books and educational materials. We aim to support lifelong learning, foster a love for reading, and promote the exchange of knowledge across the globe.
+            </p>
+
+            <h4>Our Collection</h4>
+            <p>We pride ourselves on our extensive and diverse collection of digital resources, including:</p>
+            <ul>
+                <li><em>E-books</em>: From timeless classics to contemporary bestsellers, we have something for every reader.</li>
+                <li><em>Academic Journals</em>: Access a wide array of peer-reviewed journals covering various fields of study.</li>
+                <li><em>Magazines and Newspapers</em>: Stay informed with our selection of periodicals from around the world.</li>
+                <li><em>Research Databases</em>: Delve into specialized databases for detailed research and study.</li>
+            </ul>
+
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <h4>Why Choose Us?</h4>
+                    <ul>
+                        <li> Access our library anytime, anywhere. All you need is an internet connection.</li>
+                        <li> Our website is designed to be intuitive and easy to navigate, ensuring you find what you need quickly and efficiently.</li>
+                        <li> Create your own reading lists, bookmark your favorite titles, and receive recommendations tailored to your interests.</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Content/Images/about1.jpg" alt="Why Choose Us" class="img-fluid">
+                </div>
+            </div>
+
+            <h4>Our History</h4>
+            <p>
+                Book Heaven was founded in 2006 with a vision to make quality literature and educational resources accessible to everyone. Over the years, we have grown from a small collection of e-books to a vast digital library, serving thousands of members worldwide.
+            </p>
+
+            <h4>Our Team</h4>
+            <p>
+                Our team is comprised of dedicated professionals who are passionate about books and education. From librarians and researchers to tech experts and customer service representatives, we work together to ensure the best possible experience for our users.
+            </p>
+
+            <p>
+                Thank you for visiting our Library. We look forward to being a part of your reading and learning journey!
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .about-container {
+        padding: 50px;
+        background: #f8f8f8;
+    }
+
+        .about-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .about-container h1, .about-container h4 {
+            color: #4169e1; /* Example color for the headings */
+        }
+
+        .about-container p, .about-container ul {
+            margin-top: 20px;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .about-container ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+            .about-container ul li::before {
+                content: "\2022";
+                color: #0B504F; /* Bullet color */
+                font-weight: bold;
+                display: inline-block;
+                width: 1em;
+                margin-left: -1em;
+            }
+</style>

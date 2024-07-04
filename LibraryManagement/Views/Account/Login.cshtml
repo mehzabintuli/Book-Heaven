@@ -1,0 +1,88 @@
+﻿@model LibraryManagement.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml";
+}
+<div class="text-center my-4">
+    <h3 style="color: #ff5757;">Welcome to Book Haven</h3>
+</div>
+
+<div class="login-container">
+    <div class="login-banner">
+        <img src="~/Content/Images/Banner.jpg" alt="Welcome to Book Heaven!" />
+    </div>
+    <div class="login-form">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+
+            </div>
+            <button type="submit" class="btn btn-primary">Log in</button>
+        }
+        <div class="form-group">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <div class="form-group">
+            <p>Don't have an account? <a href="@Url.Action("SignUp", "Account")">Sign up</a></p>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 50px;
+        background: #f8f8f8;
+    }
+
+    .login-banner {
+        flex: 1;
+        padding-right: 20px;
+    }
+
+        .login-banner img {
+            width: 100%;
+            height: auto;
+        }
+
+        .login-banner h1 {
+            color: #ff5757;
+        }
+
+    .login-form {
+        flex: 1;
+        padding-left: 20px;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .btn-primary {
+        background-color: #ff5757;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer;
+    }
+</style>

@@ -1,0 +1,105 @@
+﻿@model LibraryManagement.Models.SignUpModel
+@{
+    ViewBag.Title = "Sign Up";
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml";
+}
+
+<div class="signup-container">
+    <div class="signup-banner">
+        <img src="~/Content/Images/signup.jpg" alt="Welcome to Book Heaven" />
+    </div>
+    <div class="signup-form">
+        @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName)
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Gender)
+                @Html.DropDownListFor(m => m.Gender, new SelectList(new[] { "Male", "Female" }), "Select Gender", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber)
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DOB)
+                @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.CheckBoxFor(m => m.AcceptTerms)
+                @Html.LabelFor(m => m.AcceptTerms, "I have read and agree with Terms of Service and our Privacy Policy")
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        }
+        <div class="form-group">
+            <p>Already have an account? <a href="@Url.Action("Login", "Account")">Sign in</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .signup-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 50px;
+        background: #f8f8f8;
+    }
+
+    .signup-banner {
+        flex: 1;
+        padding-right: 20px;
+        text-align: center;
+        padding: 50px 0;
+    }
+
+        .signup-banner img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .signup-form {
+        flex: 1;
+        padding-left: 20px;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .btn-primary {
+        background-color: #563d7c;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer;
+    }
+</style>
