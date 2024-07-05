@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,10 +22,11 @@ namespace LibraryManagement.Controllers
             return RedirectToAction("AdminDashboard", "Admin");
         }
 
-        public ActionResult User()
+        public new ActionResult User()
         {
             // Redirect to User page or view
-            return RedirectToAction("UserDashboard", "User");
+            //return RedirectToAction("UserDashboard", "User");
+            return View();
         }
         // GET: Home
         public ActionResult Index()
@@ -45,33 +47,24 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public ActionResult Contact(string Name, string Email, string PhoneNumber, string Subject, string Message)
         {
+            var contactMessage = new ContactMessage
+            {
+
+                Email = Email,
+                Subject = Subject,
+                Message = Message
+            };
+
+            // Assuming an instance of AdminController is created to add the message
+            AdminController adminController = new AdminController();
+            adminController.AddContactMessage(contactMessage);
+
             // Handle form submission, e.g., send email or save to database
             ViewBag.Message = "Thank you for contacting us! We will get back to you soon.";
             return View();
         }
 
-        public class HomeController
-        {
-            public ActionResult Contact(string Name, string Email, string PhoneNumber, string Subject, string Message)
-            {
-                var contactMessage = new ContactMessage
-                {
-
-                    Email = Email,
-                    Subject = Subject,
-                    Message = Message
-                };
-
-                // Assuming an instance of AdminController is created to add the message
-                AdminController adminController = new AdminController();
-                adminController.AddContactMessage(contactMessage);
-
-                // Handle form submission, e.g., send email or save to database
-                ViewBag.Message = "Thank you for contacting us! We will get back to you soon.";
-                return View();
-            }
-
-            public class Book
+        public class Book
         {
             public int Id { get; set; }
             public string Title { get; set; }
@@ -137,6 +130,10 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                AdminController adminController = new AdminController();
+                adminController.AddBorrowRequest(model);
+
                 // Handle form submission, e.g., save to database
                 ViewBag.Message = "Book issued successfully!";
                 return View("BorrowForm", model);

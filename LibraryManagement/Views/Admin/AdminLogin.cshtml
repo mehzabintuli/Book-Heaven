@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Admin Login";
-    Layout = "~/Views/Shared/_AdminLoginLayout.cshtml"; 
+    Layout = "~/Views/Shared/_AdminLoginLayout.cshtml";
 }
 
 <div class="text-center my-4">
@@ -12,7 +12,6 @@
 <div class="login-container">
     <div class="login-banner">
         <img src="~/Content/Images/admin2.jpg" alt="Welcome to Book Heaven!" />
-
     </div>
     <div class="login-form">
         @using (Html.BeginForm("AdminLogin", "Admin", FormMethod.Post))
@@ -21,12 +20,10 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Email)
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         }
@@ -53,10 +50,6 @@
         .login-banner img {
             width: 100%;
             height: auto;
-        }
-
-        .login-banner h1 {
-            color: #ff5757;
         }
 
     .login-form {

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<LibraryManagement.Controllers.HomeController.BorrowModel>
+
+@{
+    ViewBag.Title = "Borrow Requests";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Borrow Requests</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Name</td>
+                <td>@request.Email</td>
+                <td>@request.Contact</td>
+                <td>@request.IssueDate.ToString("yyyy-MM-dd")</td>
+                <td>@request.ReturnDate.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>

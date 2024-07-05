@@ -144,9 +144,13 @@
     <Content Include="Content\Images\admin1.jpg" />
     <Content Include="Content\Images\admin2.jpg" />
     <Content Include="Content\Images\admin3.jpg" />
+    <Content Include="Content\Images\adminSlide1.jpg" />
+    <Content Include="Content\Images\adminSlide2.jpg" />
+    <Content Include="Content\Images\adminSlide3.jpg" />
     <Content Include="Content\Images\author1.jpg" />
     <Content Include="Content\Images\author2.jpg" />
     <Content Include="Content\Images\author3.jpg" />
+    <Content Include="Content\Images\author4.jpg" />
     <Content Include="Content\Images\Banner.jpg" />
     <Content Include="Content\Images\book.jpg" />
     <Content Include="Content\Images\book1.jpg" />
@@ -155,7 +159,9 @@
     <Content Include="Content\Images\book4.jpg" />
     <Content Include="Content\Images\book5.jpg" />
     <Content Include="Content\Images\book6.jpg" />
+    <Content Include="Content\Images\book7.jpg" />
     <Content Include="Content\Images\contact.jpg" />
+    <Content Include="Content\Images\CreateAuthor.jpg" />
     <Content Include="Content\Images\index1.jpg" />
     <Content Include="Content\Images\index2.jpg" />
     <Content Include="Content\Images\index3.jpg" />
@@ -168,18 +174,18 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\Images\Pdfs\book1.pdf" />
-    <Content Include="Content\Images\Pdfs\book2.pdf" />
-    <Content Include="Content\Images\Pdfs\book3.pdf" />
-    <Content Include="Content\Images\Pdfs\book4.pdf" />
-    <Content Include="Content\Images\Pdfs\book5.pdf" />
-    <Content Include="Content\Images\Pdfs\book6.pdf" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\Pdfs\book1.pdf" />
+    <Content Include="Content\Pdfs\book2.pdf" />
+    <Content Include="Content\Pdfs\book3.pdf" />
+    <Content Include="Content\Pdfs\book4.pdf" />
+    <Content Include="Content\Pdfs\book5.pdf" />
+    <Content Include="Content\Pdfs\book6.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -222,6 +228,9 @@
     <Content Include="Views\Admin\CreateBook.cshtml" />
     <Content Include="Views\Admin\EditAuthor.cshtml" />
     <Content Include="Views\Admin\EditBook.cshtml" />
+    <Content Include="Views\Admin\AdminBorrowlist.cshtml" />
+    <Content Include="Views\Admin\AdminHome.cshtml" />
+    <Content Include="Views\Admin\AdminUserlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
