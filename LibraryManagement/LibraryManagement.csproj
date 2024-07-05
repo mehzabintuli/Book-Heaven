@@ -110,12 +110,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\ContactMessage.cs" />
+    <Compile Include="Models\LibraryBook.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,7 +161,10 @@
     <Content Include="Content\Images\book4.jpg" />
     <Content Include="Content\Images\book5.jpg" />
     <Content Include="Content\Images\book6.jpg" />
+    <Content Include="Content\Images\book7.0.jpg" />
     <Content Include="Content\Images\book7.jpg" />
+    <Content Include="Content\Images\book8.jpg" />
+    <Content Include="Content\Images\c.jpg" />
     <Content Include="Content\Images\contact.jpg" />
     <Content Include="Content\Images\CreateAuthor.jpg" />
     <Content Include="Content\Images\index icon.png" />
@@ -232,6 +237,7 @@
     <Content Include="Views\Admin\AdminHome.cshtml" />
     <Content Include="Views\Admin\AdminUserlist.cshtml" />
     <Content Include="Views\Account\Landing.cshtml" />
+    <Content Include="Views\Books\Bookslist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

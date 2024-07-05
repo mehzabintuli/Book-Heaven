@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LibraryManagement.Models.LibraryBook>
+
+@{
+    ViewBag.Title = "Books List";
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml"; // Ensure you are using the correct layout file
+}
+
+<style>
+    .books-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .book-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        width: 200px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .book-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+    .search-bar {
+        margin-bottom: 20px;
+    }
+
+        .search-bar input {
+            width: 200px;
+            padding: 8px;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 8px 16px;
+        }
+
+    .book-item .btn-info {
+        margin-top: auto;
+    }
+</style>
+
+<div class="search-bar">
+    @using (Html.BeginForm("BooksList", "Books", FormMethod.Get))
+    {
+        <input type="text" name="searchQuery" placeholder="Search for books..." value="@Request.QueryString["searchQuery"]" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    }
+</div>
+
+<div class="books-list">
+    @foreach (var book in Model)
+    {
+        <div class="book-item">
+            <img src="@Url.Content(book.ImageUrl)" alt="@book.Title" />
+            <h3>@book.Title</h3>
+            <p>by @book.Author</p>
+            <a href="@Url.Action("Details", "Books", new { id = book.Id })" class="btn btn-info">See Details</a>
+        </div>
+    }
+</div>
