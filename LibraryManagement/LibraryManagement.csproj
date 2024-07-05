@@ -162,6 +162,7 @@
     <Content Include="Content\Images\book7.jpg" />
     <Content Include="Content\Images\contact.jpg" />
     <Content Include="Content\Images\CreateAuthor.jpg" />
+    <Content Include="Content\Images\index icon.png" />
     <Content Include="Content\Images\index1.jpg" />
     <Content Include="Content\Images\index2.jpg" />
     <Content Include="Content\Images\index3.jpg" />
@@ -216,7 +217,6 @@
     <Content Include="Views\Shared\_AdminLoginLayout.cshtml" />
     <Content Include="Views\Shared\_NoNavLayout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Landing.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Authors.cshtml" />
     <Content Include="Views\Home\Books.cshtml" />
@@ -231,6 +231,7 @@
     <Content Include="Views\Admin\AdminBorrowlist.cshtml" />
     <Content Include="Views\Admin\AdminHome.cshtml" />
     <Content Include="Views\Admin\AdminUserlist.cshtml" />
+    <Content Include="Views\Account\Landing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,167 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml"; // Use your main layout or set to null for no layout
+}
+
+<div class="landing-container">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="~/Content/Images/book icon.jpg" alt="icon" class="brand-icon"> Book Heaven
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="@Url.Action("Login", "Account")" class="nav-link">
+                    <img src="~/Content/Images/login.jpg" alt="Login" class="login-icon">
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="content">
+        <div class="left-side">
+            <div class="image">
+                <img src="~/Content/Images/slide4.jpg" alt="slider">
+            </div>
+            <div class="search-books">
+                <h1>Looking for an <span class="highlight">Online Library</span>? </h1>
+                <p> Then this is the perfevt website for you.<br>Among thousands of books, search your favorite ones easily.</p>
+                <a href="@Url.Action("BooksList", "Books")" class="search-link">Click Here</a>
+            </div>
+        </div>
+        <div class="text">
+            <h1>What's <span class="highlight">New</span>? </h1>
+            <p>Discover the latest additions and updates to our library collection. Want to know more about our website? Click on the button below.</p>
+            <div class="learn-more-button">
+                @Html.ActionLink("Learn More", "About", "Home", new { area = "" }, new { @class = "btn btn-learn-more" })
+            </div>
+            <div class="additional-image">
+                <img src="~/Content/Images/slide5.jpg" alt="additional-slider">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .landing-container {
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #f8f9fa;
+    }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .brand-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    .navbar-nav {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: #333;
+        display: flex;
+        align-items: center;
+    }
+
+    .login-icon {
+        width: 60px; /* Increased width */
+        height: 30px;
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items at the start */
+        padding: 40px;
+    }
+
+    .left-side {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image img {
+        width: 400px;
+        height: auto;
+    }
+
+    .text {
+        max-width: 400px;
+        margin-left: 40px; /* Added margin to align with the image */
+    }
+
+        .text h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+    .highlight {
+        color: #007BFF;
+    }
+
+    .text p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    .learn-more-button {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .btn-learn-more {
+        font-size: 1.2em;
+        padding: 10px 20px;
+        background-color: #007BFF; /* Bootstrap primary color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn-learn-more:hover {
+            background-color: #0056b3; /* Darker shade for hover */
+        }
+
+    .additional-image img {
+        width: 400px;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .search-books {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+
+    .search-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #007BFF; /* Bootstrap primary color */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+        .search-link:hover {
+            background-color: #0056b3; /* Darker shade for hover */
+        }
+</style>

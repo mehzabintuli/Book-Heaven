@@ -41,6 +41,9 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                AdminController adminController = new AdminController();
+                adminController.AddUser(model);
                 // Perform sign-up logic here
                 // For example, save the user details to a database
 
@@ -59,9 +62,18 @@ namespace LibraryManagement.Controllers
             Session.Clear();
             Session.Abandon();
 
-            // Redirect to login page
-            return RedirectToAction("Login");
+            // Redirect to the welcome (landing) page
+            return RedirectToAction("Landing", "Account");
         }
+
+
+        public ActionResult Landing()
+        {
+            ViewBag.Title = "Welcome";
+            return View();
+        }
+
+
 
     }
 }
