@@ -11,13 +11,12 @@ namespace LibraryManagement.Controllers
         private List<LibraryBook> GetBooks()
         {
             return new List<LibraryBook>
-         {
-          new LibraryBook { Id = 1, Title = "Teach Yourself C", Author = "Herbert Schildt", ImageUrl = "~/Content/Images/c.jpg" },
-          new LibraryBook { Id = 2, Title = "Shatter Me", Author = "Tahereh Mafi", ImageUrl = "~/Content/Images/book7.0.jpg" },
-          new LibraryBook { Id = 3, Title = "The Maddest Obsession", Author = "Danielle Lori", ImageUrl = "~/Content/Images/book8.jpg" }
-          };
+            {
+                new LibraryBook { Id = 1, Title = "Teach Yourself C", Author = "Herbert Schildt", ImageUrl = "~/Content/Images/c.jpg" },
+                new LibraryBook { Id = 2, Title = "Shatter Me", Author = "Tahereh Mafi", ImageUrl = "~/Content/Images/book7.0.jpg" },
+                new LibraryBook { Id = 3, Title = "The Maddest Obsession", Author = "Danielle Lori", ImageUrl = "~/Content/Images/book8.jpg" }
+            };
         }
-
 
         public ActionResult BooksList(string searchQuery)
         {
@@ -31,6 +30,7 @@ namespace LibraryManagement.Controllers
             return View(books);
         }
 
+        [Authorize]
         public ActionResult Details(int id)
         {
             var book = GetBooks().FirstOrDefault(b => b.Id == id);
