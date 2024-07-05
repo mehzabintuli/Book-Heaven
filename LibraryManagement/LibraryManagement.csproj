@@ -167,6 +167,7 @@
     <Content Include="Content\Images\c.jpg" />
     <Content Include="Content\Images\contact.jpg" />
     <Content Include="Content\Images\CreateAuthor.jpg" />
+    <Content Include="Content\Images\goback.png" />
     <Content Include="Content\Images\index icon.png" />
     <Content Include="Content\Images\index1.jpg" />
     <Content Include="Content\Images\index2.jpg" />

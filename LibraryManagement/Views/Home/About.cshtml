@@ -66,6 +66,10 @@
     </div>
 </div>
 
+<a href="@Url.Action("Landing", "Account")" class="go-back">
+    <img src="~/Content/Images/goback.png" alt="Go Back Icon" class="small-icon">
+</a>
+
 <style>
     .about-container {
         padding: 50px;
@@ -100,4 +104,16 @@
                 width: 1em;
                 margin-left: -1em;
             }
+
+    .go-back {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        text-decoration: none;
+    }
+
+    .small-icon {
+        width: 32px;
+        height: 32px;
+    }
 </style>

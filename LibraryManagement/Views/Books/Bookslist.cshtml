@@ -53,6 +53,19 @@
         color: red;
         margin-bottom: 20px;
     }
+
+    .go-back {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: #333;
+        text-decoration: none;
+    }
+
+        .go-back:hover {
+            color: #007bff;
+        }
 </style>
 
 <div class="search-bar">
@@ -62,13 +75,6 @@
         <button type="submit" class="btn btn-primary">Search</button>
     }
 </div>
-
-@if (!User.Identity.IsAuthenticated)
-{
-    <div class="login-message">
-        Please log in first to see book details.
-    </div>
-}
 
 <div class="books-list">
     @foreach (var book in Model)
@@ -83,8 +89,16 @@
             }
             else
             {
-                <a href="@Url.Action("Login", "Account", new { returnUrl = Url.Action("Details", "Books", new { id = book.Id }) })" class="btn btn-info">See Details</a>
+                <button class="btn btn-info" onclick="showLoginMessage()">See Details</button>
             }
         </div>
     }
 </div>
+
+<a href="@Url.Action("Landing", "Account")" class="go-back">&#x2190; Go Back</a>
+
+<script>
+    function showLoginMessage() {
+        alert("Please log in first to see book details.");
+    }
+</script>
