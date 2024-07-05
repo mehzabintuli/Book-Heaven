@@ -115,6 +115,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\ContactMessage.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,6 +215,13 @@
     <Content Include="Views\Home\Authors.cshtml" />
     <Content Include="Views\Home\Books.cshtml" />
     <Content Include="Views\Home\BorrowForm.cshtml" />
+    <Content Include="Views\Admin\AdminAuthor.cshtml" />
+    <Content Include="Views\Admin\AdminBook.cshtml" />
+    <Content Include="Views\Admin\AdminMessage.cshtml" />
+    <Content Include="Views\Admin\CreateAuthor.cshtml" />
+    <Content Include="Views\Admin\CreateBook.cshtml" />
+    <Content Include="Views\Admin\EditAuthor.cshtml" />
+    <Content Include="Views\Admin\EditBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

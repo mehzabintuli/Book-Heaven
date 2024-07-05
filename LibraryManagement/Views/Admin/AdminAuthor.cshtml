@@ -1,0 +1,44 @@
+﻿@model IEnumerable<LibraryManagement.Controllers.AdminController.Author>
+
+@{
+    ViewBag.Title = "Admin - Manage Authors";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Manage Authors</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>About</th>
+                <th>Books</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var author in Model)
+            {
+                <tr>
+                    <td><img src="@author.ImageUrl" alt="@author.Name" class="img-thumbnail" style="max-height: 100px;" /></td>
+                    <td>@author.Name</td>
+                    <td>@author.About</td>
+                    <td>
+                        <ul>
+                            @foreach (var book in author.Books)
+                            {
+                                <li>@book.Title</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditAuthor", new { id = author.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteAuthor", new { id = author.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Add New Author", "CreateAuthor", "Admin", null, new { @class = "btn btn-success" })
+</div>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<LibraryManagement.Models.ContactMessage>
+@{
+    ViewBag.Title = "Admin Messages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Contact Messages</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model)
+        {
+            <tr>
+                <td>@message.Email</td>
+                <td>@message.Subject</td>
+                <td>@message.Message</td>
+                <td>
+                    <button type="button" class="btn btn-primary">Reply</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

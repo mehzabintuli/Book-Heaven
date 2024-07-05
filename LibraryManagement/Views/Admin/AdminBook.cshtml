@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LibraryManagement.Models.Book>
+@{
+    ViewBag.Title = "Admin Books";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Admin Books</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Details</th>
+            <th>Books</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>
+                    <strong>Title:</strong> @book.Title <br />
+                    <strong>Author:</strong> @book.Author <br />
+
+                    <strong>Genre:</strong> @book.Genre <br />
+                    <strong>Language:</strong> @book.Language <br />
+                    <strong>Available:</strong> @(book.IsAvailable ? "Yes" : "No") <br />
+                </td>
+                <td>
+                    <img src="@book.ImageUrl" alt="@book.Title" style="width: 100px; height: auto;" />
+                </td>
+                <td>
+                    <a href="@Url.Action("EditBook", "Admin", new { id = book.Id })" class="btn btn-warning">Update</a>
+                    <a href="@Url.Action("Delete", "Admin", new { id = book.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-end">
+    <a href="@Url.Action("CreateBook", "Admin")" class="btn btn-success">Add</a>
+</div>
