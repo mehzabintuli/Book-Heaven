@@ -74,6 +74,7 @@ namespace LibraryManagement.Controllers
             public bool IsAvailable { get; set; }
             public string ImageUrl { get; set; }
             public string PdfUrl { get; set; }
+            public string Summary { get; set; }
         }
 
         public class BorrowModel
@@ -89,27 +90,38 @@ namespace LibraryManagement.Controllers
         private List<Book> GetBooks()
         {
             return new List<Book>
-            {
-                new Book { Id = 1, Title = "Twisted Love", Author = "Ana Huang", Genre = "Romance Novel", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book1.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book1.pdf") },
-                new Book { Id = 2, Title = "It Ends with Us", Author = "Colleen Hoover", Genre = "Contemporary Romance", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book2.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book2.pdf") },
-                new Book { Id = 3, Title = "Love on the Brain", Author = "Ali Hazelwood", Genre = "Romance Novel", Language = "English", IsAvailable = false, ImageUrl = Url.Content("~/Content/Images/book3.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book3.pdf") },
-                new Book { Id = 4, Title = "The Housemaid", Author = "Freida McFadden", Genre = "Thriller", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book4.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book4.pdf") },
-                new Book { Id = 5, Title = "Harry Potter and the Philosopher's Stone", Author = "J. K. Rowling", Genre = "Fantasy Fiction", Language = "English", IsAvailable = false, ImageUrl = Url.Content("~/Content/Images/book5.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book5.pdf") },
-                new Book { Id = 6, Title = "Murder on the Orient Express", Author = "Agatha Christie", Genre = "Detective Fiction", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book6.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book6.pdf") }
-            };
+                 {
+                     new Book { Id = 1, Title = "Twisted Love", Author = "Ana Huang", Genre = "Romance Novel", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book1.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book1.pdf"), Summary = "Alex is a brooding, complex man with a dark past, while Ava is a warm-hearted woman determined to melt his icy exterior.As their worlds collide, love blooms amidst secrets and shadows. Will their love survive the twists of fate?" },
+                     new Book { Id = 2, Title = "It Ends with Us", Author = "Colleen Hoover", Genre = "Contemporary Romance", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book2.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book2.pdf"), Summary = "Lily's life seems perfect when she meets the charming neurosurgeon Ryle, but old wounds resurface when her first love, Atlas, reappears.Torn between past and present, she must make a heartbreaking decision. In the end, love’s true strength lies in letting go." },
+                     new Book { Id = 3, Title = "Love on the Brain", Author = "Ali Hazelwood", Genre = "Romance Novel", Language = "English", IsAvailable = false, ImageUrl = Url.Content("~/Content/Images/book3.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book3.pdf"), Summary = "Neuroscientist Bee Königswasser is forced to collaborate with her archenemy, Levi Ward, on a NASA project. As they navigate scientific challenges and personal misunderstandings, sparks fly. Sometimes love is just a neuron away." },
+                     new Book { Id = 4, Title = "The Housemaid", Author = "Freida McFadden", Genre = "Thriller", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book4.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book4.pdf"), Summary = "Millie takes a job as a housemaid for the wealthy but eccentric Winchester family. As she uncovers the household's dark secrets, she realizes she's in over her head. Can she escape before the house consumes her?" },
+                     new Book { Id = 5, Title = "Harry Potter and the Philosopher's Stone", Author = "J. K. Rowling", Genre = "Fantasy Fiction", Language = "English", IsAvailable = false, ImageUrl = Url.Content("~/Content/Images/book5.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book5.pdf"), Summary = "It is a story about Harry Potter, an orphan brought up by his aunt and uncle because his parents were killed when he was a baby but everything changes when he is invited to join Hogwarts School of Witchcraft and Wizardry and he finds out he's a wizard." },
+                     new Book { Id = 6, Title = "Murder on the Orient Express", Author = "Agatha Christie", Genre = "Detective Fiction", Language = "English", IsAvailable = true, ImageUrl = Url.Content("~/Content/Images/book6.jpg"), PdfUrl = Url.Content("~/Content/Pdfs/book6.pdf"), Summary = "Detective Hercule Poirot's luxurious train journey turns into a thrilling mystery when a passenger is found murdered.With the train stranded in a snowstorm, everyone is a suspect. Poirot must use his keen intellect to unravel the intricate web of lies and deceit." }
+                 };
         }
 
-        public ActionResult Books(int page = 1)
+
+        public ActionResult Books(string searchString, int page = 1)
         {
             int pageSize = 3;
             var books = GetBooks();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Title.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                         s.Author.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            }
+
             var paginatedBooks = books.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = (int)Math.Ceiling((double)books.Count / pageSize);
+            ViewBag.SearchString = searchString;
 
             return View(paginatedBooks);
         }
+
+
 
         [HttpGet]
         public ActionResult Borrow(int id)

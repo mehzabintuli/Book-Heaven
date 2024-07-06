@@ -123,6 +123,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1_Nv2NNALuokZEcV6hYEHdGA.jpg" />
+    <Content Include="2ea4118d-4807-4b60-9f95-836f9bc4b896.jpg" />
+    <Content Include="74cb1a73-bfc9-407d-9a36-5e2111ac2185.jpg" />
+    <Content Include="artificial-neural-network4.png" />
+    <Content Include="Basic-Confusion-matrix.png" />
+    <Content Include="book icon.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -154,6 +160,7 @@
     <Content Include="Content\Images\author3.jpg" />
     <Content Include="Content\Images\author4.jpg" />
     <Content Include="Content\Images\Banner.jpg" />
+    <Content Include="Content\Images\book icon.jpg" />
     <Content Include="Content\Images\book.jpg" />
     <Content Include="Content\Images\book1.jpg" />
     <Content Include="Content\Images\book2.jpg" />
@@ -173,14 +180,22 @@
     <Content Include="Content\Images\index2.jpg" />
     <Content Include="Content\Images\index3.jpg" />
     <Content Include="Content\Images\Login.jpg" />
+    <Content Include="Content\Images\login_icon.jpg" />
     <Content Include="Content\Images\signup.jpg" />
     <Content Include="Content\Images\slide1.jpg" />
     <Content Include="Content\Images\slide2.jpg" />
     <Content Include="Content\Images\slide3.jpg" />
     <Content Include="Content\Images\slide4.jpg" />
+    <Content Include="Content\Images\slide5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="LLM.png" />
+    <Content Include="login_icon.jpg" />
+    <Content Include="LRF.png" />
+    <Content Include="LRFG.png" />
+    <Content Include="ML.png" />
+    <Content Include="Neural-Networks-Architecture.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -193,6 +208,10 @@
     <Content Include="Content\Pdfs\book4.pdf" />
     <Content Include="Content\Pdfs\book5.pdf" />
     <Content Include="Content\Pdfs\book6.pdf" />
+    <Content Include="Aurelien-Geron-Hands-On-Machine-Learning-with-Scikit-Learn-Keras-and-Tensorflow_-Concepts-Tools-and-Techniques-to-Build-Intelligent-Systems-OReilly-Media-2019.pdf" />
+    <Content Include="Bishop - Pattern Recognition and Machine Learning.pdf" />
+    <Content Include="LibraryManagement_Updated_Admin01.zip" />
+    <Content Include="ML Machine Learning-A Probabilistic Perspective.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -204,6 +223,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="sigmod.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -239,6 +259,7 @@
     <Content Include="Views\Account\Landing.cshtml" />
     <Content Include="Views\Books\Bookslist.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Thesis.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
