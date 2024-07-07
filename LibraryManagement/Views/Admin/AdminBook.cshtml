@@ -11,7 +11,8 @@
         <tr>
             <th>ID</th>
             <th>Details</th>
-            <th>Books</th>
+            <th>Summary</th>  <!-- Updated column header -->
+            <th>Cover</th>  <!-- Renamed to Cover for clarity -->
             <th>Actions</th>
         </tr>
     </thead>
@@ -23,11 +24,11 @@
                 <td>
                     <strong>Title:</strong> @book.Title <br />
                     <strong>Author:</strong> @book.Author <br />
-
                     <strong>Genre:</strong> @book.Genre <br />
                     <strong>Language:</strong> @book.Language <br />
                     <strong>Available:</strong> @(book.IsAvailable ? "Yes" : "No") <br />
                 </td>
+                <td>@book.Summary</td> <!-- Added this line -->
                 <td>
                     <img src="@book.ImageUrl" alt="@book.Title" style="width: 100px; height: auto;" />
                 </td>

@@ -11,14 +11,16 @@ namespace LibraryManagement.Controllers
 {
     public class AdminController : Controller
     {
+
+
         private static List<Book> books = new List<Book>
         {
-            new Book { Id = 1, Title = "Twisted Love", Author = "Ana Huang", Genre = "Romance Novel", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book1.jpg", PdfUrl = "/Content/Pdfs/book1.pdf" },
-            new Book { Id = 2, Title = "It Ends with Us", Author = "Colleen Hoover", Genre = "Contemporary Romance", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book2.jpg", PdfUrl = "/Content/Pdfs/book2.pdf" },
-            new Book { Id = 3, Title = "Love on the Brain", Author = "Ali Hazelwood", Genre = "Romance Novel", Language = "English", IsAvailable = false, ImageUrl = "/Content/Images/book3.jpg", PdfUrl = "/Content/Pdfs/book3.pdf" },
-            new Book { Id = 4, Title = "The Housemaid", Author = "Freida McFadden", Genre = "Thriller", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book4.jpg", PdfUrl = "/Content/Pdfs/book4.pdf" },
-            new Book { Id = 5, Title = "Harry Potter and the Philosopher's Stone", Author = "J. K. Rowling", Genre = "Fantasy Fiction", Language = "English", IsAvailable = false, ImageUrl = "/Content/Images/book5.jpg", PdfUrl = "/Content/Pdfs/book5.pdf" },
-            new Book { Id = 6, Title = "Murder on the Orient Express", Author = "Agatha Christie", Genre = "Detective Fiction", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book6.jpg", PdfUrl = "/Content/Pdfs/book6.pdf" }
+            new Book { Id = 1, Title = "Twisted Love", Author = "Ana Huang", Genre = "Romance Novel", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book1.jpg", PdfUrl = "/Content/Pdfs/book1.pdf", Summary = "A captivating romance story." },
+            new Book { Id = 2, Title = "It Ends with Us", Author = "Colleen Hoover", Genre = "Contemporary Romance", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book2.jpg", PdfUrl = "/Content/Pdfs/book2.pdf", Summary = "A story of love and resilience." },
+            new Book { Id = 3, Title = "Love on the Brain", Author = "Ali Hazelwood", Genre = "Romance Novel", Language = "English", IsAvailable = false, ImageUrl = "/Content/Images/book3.jpg", PdfUrl = "/Content/Pdfs/book3.pdf", Summary = "A journey through the complexities of love." },
+            new Book { Id = 4, Title = "The Housemaid", Author = "Freida McFadden", Genre = "Thriller", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book4.jpg", PdfUrl = "/Content/Pdfs/book4.pdf", Summary = "A gripping thriller that keeps you on the edge of your seat." },
+            new Book { Id = 5, Title = "Harry Potter and the Philosopher's Stone", Author = "J. K. Rowling", Genre = "Fantasy Fiction", Language = "English", IsAvailable = false, ImageUrl = "/Content/Images/book5.jpg", PdfUrl = "/Content/Pdfs/book5.pdf", Summary = "The magical journey of a young wizard." },
+            new Book { Id = 6, Title = "Murder on the Orient Express", Author = "Agatha Christie", Genre = "Detective Fiction", Language = "English", IsAvailable = true, ImageUrl = "/Content/Images/book6.jpg", PdfUrl = "/Content/Pdfs/book6.pdf", Summary = "A classic mystery novel with unexpected twists." }
         };
 
         public ActionResult AdminLogin()
@@ -29,27 +31,6 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        /*public ActionResult AdminLogin(LoginModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Perform login logic here
-                bool isAdmin = CheckIfAdmin(model.Email, model.Password);
-
-                if (isAdmin)
-                {
-                    // If login is successful, redirect to the Admin page
-                    return RedirectToAction("AdminHome", "Admin");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }*/
 
 
 
