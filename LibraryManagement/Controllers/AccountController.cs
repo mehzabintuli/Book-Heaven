@@ -41,7 +41,6 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 AdminController adminController = new AdminController();
                 adminController.AddUser(model);
                 // Perform sign-up logic here
@@ -66,14 +65,10 @@ namespace LibraryManagement.Controllers
             return RedirectToAction("Landing", "Account");
         }
 
-
         public ActionResult Landing()
         {
             ViewBag.Title = "Welcome";
             return View();
         }
-
-
-
     }
 }

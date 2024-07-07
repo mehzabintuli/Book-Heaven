@@ -43,5 +43,6 @@ namespace LibraryManagement.Models
         [Required]
         [Range(typeof(bool), "true", "true", ErrorMessage = "You must accept the terms and conditions.")]
         public bool AcceptTerms { get; set; }
+        public object Name { get; internal set; }
     }
 }

@@ -152,20 +152,18 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Borrow(BorrowModel model)
+        public ActionResult CreateBorrowRequest(BorrowRequestModel model)
         {
             if (ModelState.IsValid)
             {
-
                 AdminController adminController = new AdminController();
                 adminController.AddBorrowRequest(model);
 
-                // Handle form submission, e.g., save to database
-                ViewBag.Message = "Book issued successfully!";
-                return View("BorrowForm", model);
+                // Additional logic if needed
+                return RedirectToAction("Index");
             }
 
-            return View("BorrowForm", model);
+            return View(model);
         }
         public class Author
         {

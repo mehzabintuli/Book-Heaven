@@ -11,8 +11,9 @@
         <tr>
             <th>ID</th>
             <th>Details</th>
-            <th>Summary</th>  <!-- Updated column header -->
-            <th>Cover</th>  <!-- Renamed to Cover for clarity -->
+            <th style="width: 20%;">Summary</th> <!-- Adjusted width for summary column -->
+            <th>PDF</th>
+            <th>Cover</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -28,12 +29,23 @@
                     <strong>Language:</strong> @book.Language <br />
                     <strong>Available:</strong> @(book.IsAvailable ? "Yes" : "No") <br />
                 </td>
-                <td>@book.Summary</td> <!-- Added this line -->
+                <td>@book.Summary</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(book.PdfUrl))
+                    {
+                        <a href="@book.PdfUrl" target="_blank" class="btn btn-info">View PDF</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("AddPdf", "Admin", new { id = book.Id })" class="btn btn-secondary">Add PDF</a>
+                    }
+                </td>
                 <td>
                     <img src="@book.ImageUrl" alt="@book.Title" style="width: 100px; height: auto;" />
                 </td>
                 <td>
                     <a href="@Url.Action("EditBook", "Admin", new { id = book.Id })" class="btn btn-warning">Update</a>
+                    <span style="margin-right: 10px;"></span> <!-- Gap between buttons -->
                     <a href="@Url.Action("Delete", "Admin", new { id = book.Id })" class="btn btn-danger">Delete</a>
                 </td>
             </tr>

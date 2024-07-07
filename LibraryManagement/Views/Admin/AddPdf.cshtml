@@ -1,0 +1,20 @@
+﻿@model LibraryManagement.Models.Book
+@{
+    ViewBag.Title = "Add PDF";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add PDF for @Model.Title</h2>
+
+@using (Html.BeginForm("AddPdf", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        <label for="pdfFile">Upload PDF</label>
+        <input type="file" name="pdfFile" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+}
