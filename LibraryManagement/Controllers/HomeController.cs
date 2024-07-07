@@ -136,6 +136,20 @@ namespace LibraryManagement.Controllers
 
             return HttpNotFound();
         }
+        [HttpGet]
+        public ActionResult AddToList(int id)
+        {
+            var book = GetBooks().FirstOrDefault(b => b.Id == id);
+            if (book != null && !book.IsAvailable)
+            {
+                // Add logic to add the book to the user's list
+                // For example, save to the database or session
+                ViewBag.Message = "Book added to your list!";
+                return RedirectToAction("Books");
+            }
+
+            return HttpNotFound();
+        }
 
         [HttpPost]
         public ActionResult Borrow(BorrowModel model)
@@ -161,10 +175,18 @@ namespace LibraryManagement.Controllers
             public string ImageUrl { get; set; }
             public List<Book> Books { get; set; }
         }
-        public ActionResult Authors()
+
+        public ActionResult Authors(int page = 1)
         {
+            int pageSize = 4;
             var authors = GetAuthors();
-            return View(authors);
+
+            var paginatedAuthors = authors.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)authors.Count / pageSize);
+
+            return View(paginatedAuthors);
         }
 
         // Mock data - replace with your data retrieval logic
@@ -175,17 +197,26 @@ namespace LibraryManagement.Controllers
                 new Author { Id = 1, Name = "Ana Huang", About = "Ana Huang is an Amazon best-selling author of Young Adult and contemporary romance.", ImageUrl = Url.Content("~/Content/Images/author1.jpg"), Books = new List<Book>
                 {
                     new Book { Id = 1, Title = "Twisted Love" },
-
                 }},
                 new Author { Id = 2, Name = "Colleen Hoover", About = "Colleen Hoover is an American author who primarily writes novels in the romance and young adult fiction genres.", ImageUrl = Url.Content("~/Content/Images/author2.jpg"), Books = new List<Book>
                 {
                     new Book { Id = 2, Title = "It Ends with Us" },
-
                 }},
-                 new Author { Id = 3, Name = "Ali Ali Hazelwood", About = "Ali Hazelwood is the #1 New York Times bestselling author", ImageUrl = Url.Content("~/Content/Images/author3.jpg"), Books = new List<Book>
+                new Author { Id = 3, Name = "Ali Hazelwood", About = "Ali Hazelwood is the #1 New York Times bestselling author", ImageUrl = Url.Content("~/Content/Images/author3.jpg"), Books = new List<Book>
                 {
                     new Book { Id = 3, Title = "Love on the Brain" },
-
+                }},
+                new Author { Id = 4, Name = "Freida McFadden", About = "Freida McFadden is the pen name of an American thriller author and practicing physician specializing in brain injury.", ImageUrl = Url.Content("~/Content/Images/author4.0.jpg"), Books = new List<Book>
+                {
+                    new Book { Id = 4, Title = "The Housemaid" },
+                }},
+                new Author { Id = 5, Name = "J. K. Rowling", About = "Joanne Rowling CH OBE FRSL, known by her pen name J. K. Rowling, is a British author and philanthropist.", ImageUrl = Url.Content("~/Content/Images/author4.jpg"), Books = new List<Book>
+                {
+                    new Book { Id = 5, Title = "Harry Potter and the Philosopher's Stone" },
+                }},
+                new Author { Id = 6, Name = "Agatha Christie", About = "Dame Agatha Mary Clarissa Christie was an English writer known for her 66 detective novels and 14 short story collections.", ImageUrl = Url.Content("~/Content/Images/author5.jpg"), Books = new List<Book>
+                {
+                    new Book { Id = 6, Title = "Murder on the Orient Express" },
                 }},
             };
         }

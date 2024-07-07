@@ -33,7 +33,14 @@
                     <strong>Genre:</strong> @book.Genre <br />
                     <strong>Language:</strong> @book.Language <br />
                     <strong>Available:</strong> @(book.IsAvailable ? "Yes" : "No") <br />
-                    <a href="@Url.Action("Borrow", "Home", new { id = book.Id })" class="btn btn-success" @(book.IsAvailable ? "" : "disabled")>Borrow</a>
+                    @if (book.IsAvailable)
+                    {
+                        <a href="@Url.Action("Borrow", "Home", new { id = book.Id })" class="btn btn-success">Borrow</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("AddToList", "Home", new { id = book.Id })" class="btn btn-warning">Add to List</a>
+                    }
                     <a href="@Url.Content(book.PdfUrl)" class="btn btn-primary ml-2">PDF</a>
                 </td>
                 <td>@book.Summary</td>

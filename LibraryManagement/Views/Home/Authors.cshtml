@@ -4,27 +4,92 @@
     ViewBag.Title = "Authors";
 }
 
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    .authors-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-top: 20px;
+        justify-content: space-between;
+    }
+
+    .author-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        width: calc(25% - 20px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .author-item img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+    .pagination {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+        .pagination button {
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .pagination button:hover {
+                background-color: #0056b3;
+            }
+</style>
+
 <div class="container">
     <h2>Authors</h2>
-    <div class="row">
+    <div class="authors-list">
         @foreach (var author in Model)
         {
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img class="card-img-top" src="@author.ImageUrl" alt="@author.Name">
-                    <div class="card-body">
-                        <h5 class="card-title">@author.Name</h5>
-                        <p class="card-text">@author.About</p>
-                        <h6>Books:</h6>
-                        <ul>
-                            @foreach (var book in author.Books)
-                            {
-                                <li>@book.Title</li>
-                            }
-                        </ul>
-                    </div>
-                </div>
+            <div class="author-item">
+                <img src="@author.ImageUrl" alt="@author.Name" />
+                <h3>@author.Name</h3>
+                <p>@author.About</p>
+                <h6>Books:</h6>
+                <ul>
+                    @foreach (var book in author.Books)
+                    {
+                        <li>@book.Title</li>
+                    }
+                </ul>
             </div>
+        }
+
+        @* Ensure that we always have 4 items in the authors-list by adding empty items if necessary *@
+        @for (int i = Model.Count(); i < 4; i++)
+        {
+            <div class="author-item" style="visibility: hidden;"></div>
+        }
+    </div>
+
+    <div class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <button onclick="location.href='@Url.Action("Authors", "Home", new { page = ViewBag.CurrentPage - 1 })'">Previous</button>
+        }
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <button onclick="location.href='@Url.Action("Authors", "Home", new { page = ViewBag.CurrentPage + 1 })'">Next</button>
         }
     </div>
 </div>

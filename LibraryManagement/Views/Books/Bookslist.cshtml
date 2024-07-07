@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_NoNavLayout.cshtml"; // Ensure you are using the correct layout file
 }
 
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
 <style>
     .books-list {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        padding-top: 20px;
     }
 
     .book-item {
@@ -31,23 +34,9 @@
             margin-bottom: 10px;
         }
 
-    .search-bar {
-        margin-bottom: 20px;
-    }
-
-        .search-bar input {
-            width: 200px;
-            padding: 8px;
-            margin-right: 10px;
+        .book-item .btn-info {
+            margin-top: auto;
         }
-
-        .search-bar button {
-            padding: 8px 16px;
-        }
-
-    .book-item .btn-info {
-        margin-top: auto;
-    }
 
     .login-message {
         color: red;
@@ -56,49 +45,103 @@
 
     .go-back {
         position: fixed;
-        top: 20px;
+        top: 60px; /* Adjusted to be under the navbar */
         right: 20px;
-        font-size: 24px;
-        color: #333;
-        text-decoration: none;
+        width: 40px;
+        height: 40px;
     }
 
-        .go-back:hover {
-            color: #007bff;
+        .go-back img {
+            width: 100%;
+            height: 100%;
         }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: rgba(255, 255, 255, 1);
+        }
+
+    .navbar-brand img {
+        margin-right: 10px;
+    }
 </style>
 
-<div class="search-bar">
-    @using (Html.BeginForm("BooksList", "Books", FormMethod.Get))
-    {
-        <input type="text" name="searchQuery" placeholder="Search for books..." value="@Request.QueryString["searchQuery"]" />
-        <button type="submit" class="btn btn-primary">Search</button>
-    }
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="~/Content/Images/index icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Book Heaven
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="nav-link" href="@Url.Action("BooksList", "Books")">Books</a>
+                }
+                else
+                {
+                    <a class="nav-link" href="javascript:void(0);" onclick="showLoginMessage()">Books</a>
+                }
+            </li>
+            <li class="nav-item">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="nav-link" href="@Url.Action("Authors", "Authors")">Authors</a>
+                }
+                else
+                {
+                    <a class="nav-link" href="javascript:void(0);" onclick="showLoginMessage()">Authors</a>
+                }
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login", "Account")">Login</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="books-list">
+        @foreach (var book in Model)
+        {
+            <div class="book-item">
+                <img src="@Url.Content(book.ImageUrl)" alt="@book.Title" />
+                <h3>@book.Title</h3>
+                <p>by @book.Author</p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("Details", "Books", new { id = book.Id })" class="btn btn-info">See Details</a>
+                }
+                else
+                {
+                    <button class="btn btn-info" onclick="showLoginMessage()">See Details</button>
+                }
+            </div>
+        }
+    </div>
 </div>
 
-<div class="books-list">
-    @foreach (var book in Model)
-    {
-        <div class="book-item">
-            <img src="@Url.Content(book.ImageUrl)" alt="@book.Title" />
-            <h3>@book.Title</h3>
-            <p>by @book.Author</p>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a href="@Url.Action("Details", "Books", new { id = book.Id })" class="btn btn-info">See Details</a>
-            }
-            else
-            {
-                <button class="btn btn-info" onclick="showLoginMessage()">See Details</button>
-            }
-        </div>
-    }
-</div>
-
-<a href="@Url.Action("Landing", "Account")" class="go-back">&#x2190; Go Back</a>
+<a href="@Url.Action("Landing", "Account")" class="go-back">
+    <img src="~/Content/Images/goback.png" alt="Go Back Icon">
+</a>
 
 <script>
     function showLoginMessage() {
-        alert("Please log in first to see book details.");
+        alert("Please log in first to see this page.");
     }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
