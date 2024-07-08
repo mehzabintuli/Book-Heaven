@@ -8,48 +8,132 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .container-fluid {
+            padding: 0;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar-sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: .5rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .user-info {
+            margin-bottom: 1rem;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+        }
+
+        .navbar .icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .navbar {
+            margin-left: 16.666667%;
+        }
+
+        main {
+            margin-left: 16.666667%;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Admin Panel</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("AdminHome", "Admin")">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("AdminBook", "Admin")">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("AdminUserlist", "Admin")">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("AdminAuthor", "Admin")">Authors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("AdminBorrowlist", "Admin")">BorrowList</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("AdminMessage", "Admin")">Message</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Landing", "Account")">Logout</a>
-                    </li>
-                </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-2 d-none d-md-block bg-dark sidebar">
+                <div class="sidebar-sticky">
+                    <div class="user-info text-center mt-3">
+                        <img src="~/Content/Images/adminlogo.jpg" class="rounded-circle" alt="User Image" width="60">
+                        <h5 class="mt-2 text-white">Admin</h5>
+                        <span class="text-success">● Online</span>
+                    </div>
+                    <ul class="nav flex-column mt-4">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("AdminHome", "Admin")">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("AdminBook", "Admin")">
+                                <i class="fas fa-cubes"></i>
+                                Books
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("AdminAuthor", "Admin")">
+                                <i class="fas fa-shapes"></i>
+                                Authors
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("AdminUserlist", "Admin")">
+                                <i class="fas fa-table"></i>
+                                Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("AdminBorrowlist", "Admin")">
+                                <i class="fas fa-th-large"></i>
+                                Borrow List
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("AdminWishlist", "Admin")">
+                                <i class="fas fa-dollar-sign"></i>
+                                Wish List
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("AdminMessage", "Admin")">
+                                <i class="fas fa-envelope"></i>
+                                Message
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <div class="col-md-10 ml-sm-auto col-lg-10 px-0">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/Content/Images/index icon.png" alt="Book Icon" class="icon mr-2">
+                        Welcome to Admin Panel
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="px-4 mt-4">
+                    @RenderBody()
+                </main>
             </div>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p class="text-center">© Copyright  @DateTime.Now.Year- Book Heaven Online Library. All rights reserved.</p>
-        </footer>
     </div>
+
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/respond.js"></script>

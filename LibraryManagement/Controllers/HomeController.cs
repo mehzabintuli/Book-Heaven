@@ -165,6 +165,10 @@ namespace LibraryManagement.Controllers
 
             return View(model);
         }
+        public ActionResult UserAccount()
+        {
+            return View();
+        }
         public class Author
         {
             public int Id { get; set; }

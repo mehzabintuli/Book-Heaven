@@ -54,10 +54,46 @@
             .pagination button:hover {
                 background-color: #0056b3;
             }
+
+    .search-bar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+
+        .search-bar input {
+            width: 200px;
+            padding: 5px 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .search-bar button:hover {
+                background-color: #0056b3;
+            }
 </style>
 
 <div class="container">
-    <h2>Authors</h2>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Authors</h2>
+        <div class="search-bar">
+            <form action="@Url.Action("Authors", "Home")" method="get">
+                <input type="text" name="searchTerm" placeholder="Search authors...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
     <div class="authors-list">
         @foreach (var author in Model)
         {

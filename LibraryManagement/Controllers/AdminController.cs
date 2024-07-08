@@ -290,7 +290,11 @@ namespace LibraryManagement.Controllers
 
             return View(author);
         }
-
+        public ActionResult AdminWishlist()
+        {
+            return View();
+        }
+        
         public ActionResult DeleteAuthor(int? id)
         {
             if (id == null)

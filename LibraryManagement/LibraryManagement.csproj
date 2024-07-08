@@ -150,6 +150,7 @@
     <Content Include="Content\Images\admin1.jpg" />
     <Content Include="Content\Images\admin2.jpg" />
     <Content Include="Content\Images\admin3.jpg" />
+    <Content Include="Content\Images\adminlogo.jpg" />
     <Content Include="Content\Images\adminSlide1.jpg" />
     <Content Include="Content\Images\adminSlide2.jpg" />
     <Content Include="Content\Images\adminSlide3.jpg" />
@@ -251,6 +252,8 @@
     <Content Include="Views\Books\Bookslist.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Admin\AddPdf.cshtml" />
+    <Content Include="Views\Admin\AdminWishlist.cshtml" />
+    <Content Include="Views\Home\UserAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
