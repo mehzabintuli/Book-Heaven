@@ -1,4 +1,5 @@
-﻿@model LibraryManagement.Models.SignUpModel
+﻿@model LibraryManagement.Models.Signup
+
 @{
     ViewBag.Title = "Sign Up";
     Layout = "~/Views/Shared/_NoNavLayout.cshtml";
@@ -9,44 +10,54 @@
         <img src="~/Content/Images/signup.jpg" alt="Welcome to Book Heaven" />
     </div>
     <div class="signup-form">
-        @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+        @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { id = "signupForm" }))
         {
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(m => m.FirstName)
                 @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.LastName)
                 @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Email)
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Gender)
-                @Html.DropDownListFor(m => m.Gender, new SelectList(new[] { "Male", "Female" }), "Select Gender", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Gender, new SelectList(new[] { "Select Gender", "Male", "Female" }), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.PhoneNumber)
                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.DOB)
                 @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.ConfirmPassword)
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 @Html.CheckBoxFor(m => m.AcceptTerms)
                 @Html.LabelFor(m => m.AcceptTerms, "I have read and agree with Terms of Service and our Privacy Policy")
+                @Html.ValidationMessageFor(m => m.AcceptTerms, "", new { @class = "text-danger" })
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
         }
@@ -55,6 +66,19 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <text>
+                alert('@ViewBag.SuccessMessage');
+                window.location.href = '@Url.Action("Login", "Account")';
+            </text>
+        }
+    });
+</script>
 
 <style>
     .signup-container {

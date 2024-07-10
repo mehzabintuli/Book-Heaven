@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LibraryManagement.Models.Book>
+﻿@model IEnumerable<LibraryManagement.Models.book>
 @{
     ViewBag.Title = "Admin Books";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -21,7 +21,7 @@
         @foreach (var book in Model)
         {
             <tr>
-                <td>@book.Id</td>
+                <td>@book.ID</td>
                 <td>
                     <strong>Title:</strong> @book.Title <br />
                     <strong>Author:</strong> @book.Author <br />
@@ -37,16 +37,16 @@
                     }
                     else
                     {
-                        <a href="@Url.Action("AddPdf", "Admin", new { id = book.Id })" class="btn btn-secondary">Add PDF</a>
+                        <a href="@Url.Action("AddPdf", "Admin", new { id = book.ID })" class="btn btn-secondary">Add PDF</a>
                     }
                 </td>
                 <td>
                     <img src="@book.ImageUrl" alt="@book.Title" style="width: 100px; height: auto;" />
                 </td>
                 <td>
-                    <a href="@Url.Action("EditBook", "Admin", new { id = book.Id })" class="btn btn-warning">Update</a>
+                    <a href="@Url.Action("EditBook", "Admin", new { id = book.ID })" class="btn btn-warning">Update</a>
                     <span style="margin-right: 10px;"></span> <!-- Gap between buttons -->
-                    <a href="@Url.Action("Delete", "Admin", new { id = book.Id })" class="btn btn-danger">Delete</a>
+                    <a href="@Url.Action("Delete", "Admin", new { id = book.ID })" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

@@ -1,15 +1,26 @@
 ﻿using LibraryManagement.Models;
 using System;
-using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-
 
 namespace LibraryManagement.Controllers
 {
     public class AccountController : Controller
     {
+        public class BookHeaven : DbContext
+        {
+            public BookHeaven() : base("name=BookHeavenEntities")
+            {
+            }
+
+            public DbSet<Signup> Signups { get; set; }
+            public DbSet<Login> Logins { get; set; }
+        }
+
+        private BookHeavenEntities db = new BookHeavenEntities();
+
         // GET: Account/Login
         public ActionResult Login()
         {
@@ -21,13 +32,15 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Perform login logic here
-
-                // If login is successful, redirect to another page
-                return RedirectToAction("Index", "Home");
+                var hashedPassword = HashPassword(model.PasswordHash);
+                var user = db.Signups.FirstOrDefault(u => u.Email == model.Email && u.Password == hashedPassword);
+                if (user != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", "Invalid login attempt.");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -42,27 +55,30 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                AdminController adminController = new AdminController();
-                //adminController.AddUser(model);
-                // Perform sign-up logic here
-                // For example, save the user details to a database
+                try
+                {
+                    model.Password = HashPassword(model.Password);
+                    db.Signups.Add(model);
+                    db.SaveChanges();
 
-                // If sign-up is successful, redirect to login page
-                return RedirectToAction("Login");
+                    ViewBag.SuccessMessage = "Sign up successful! You will be redirected to the login page.";
+                    return View();
+                }
+                catch (DbUpdateException ex)
+                {
+                    var innerException = ex.InnerException?.InnerException;
+                    ModelState.AddModelError("", "An error occurred while updating the database: " + innerException?.Message ?? ex.Message);
+                }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
         // GET: Account/Logout
         public ActionResult Logout()
         {
-            // Clear the user's session
             Session.Clear();
             Session.Abandon();
-
-            // Redirect to the welcome (landing) page
             return RedirectToAction("Landing", "Account");
         }
 
@@ -70,6 +86,15 @@ namespace LibraryManagement.Controllers
         {
             ViewBag.Title = "Welcome";
             return View();
+        }
+
+        private string HashPassword(string password)
+        {
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hashedBytes);
+            }
         }
     }
 }
