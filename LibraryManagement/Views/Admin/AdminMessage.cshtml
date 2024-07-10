@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LibraryManagement.Models.ContactMessage>
+﻿@model IEnumerable<LibraryManagement.Models.contact_messages>
 @{
     ViewBag.Title = "Admin Messages";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -19,9 +19,9 @@
         @foreach (var message in Model)
         {
             <tr>
-                <td>@message.Email</td>
-                <td>@message.Subject</td>
-                <td>@message.Message</td>
+                <td>@message.email</td>
+                <td>@message.subject</td>
+                <td>@message.message</td>
                 <td>
                     <button type="button" class="btn btn-primary">Reply</button>
                 </td>

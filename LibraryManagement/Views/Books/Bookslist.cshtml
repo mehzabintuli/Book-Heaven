@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LibraryManagement.Models.LibraryBook>
+﻿@model IEnumerable<LibraryManagement.Models.book>
 
 @{
     ViewBag.Title = "Books List";
@@ -115,10 +115,12 @@
     <div class="books-list">
         @foreach (var book in Model)
         {
+           
+
             <div class="book-item">
-                <img src="@Url.Content(book.ImageUrl)" alt="@book.Title" />
+                <img src="@Url.Content(book.Cover_Image)" alt="@book.Title" />
                 <h3>@book.Title</h3>
-                <p>by @book.Author</p>
+                <p>by @book.Author_Id</p>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="@Url.Action("Details", "Books", new { id = book.Id })" class="btn btn-info">See Details</a>

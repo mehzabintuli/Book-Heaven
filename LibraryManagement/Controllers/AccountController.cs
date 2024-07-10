@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace LibraryManagement.Controllers
 {
     public class AccountController : Controller
@@ -16,7 +17,7 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginModel model)
+        public ActionResult Login(Login model)
         {
             if (ModelState.IsValid)
             {
@@ -37,12 +38,12 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(SignUpModel model)
+        public ActionResult SignUp(Signup model)
         {
             if (ModelState.IsValid)
             {
                 AdminController adminController = new AdminController();
-                adminController.AddUser(model);
+                //adminController.AddUser(model);
                 // Perform sign-up logic here
                 // For example, save the user details to a database
 

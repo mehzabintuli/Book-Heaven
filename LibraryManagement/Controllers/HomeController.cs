@@ -47,12 +47,12 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public ActionResult Contact(string Name, string Email, string PhoneNumber, string Subject, string Message)
         {
-            var contactMessage = new ContactMessage
+            var contactMessage = new contact_messages
             {
 
-                Email = Email,
-                Subject = Subject,
-                Message = Message
+                email = Email,
+                subject = Subject,
+                message = Message
             };
 
             // Assuming an instance of AdminController is created to add the message
@@ -152,7 +152,7 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateBorrowRequest(BorrowRequestModel model)
+        public ActionResult CreateBorrowRequest(BorrowBook model)
         {
             if (ModelState.IsValid)
             {

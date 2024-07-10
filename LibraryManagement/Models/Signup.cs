@@ -12,20 +12,15 @@ namespace LibraryManagement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class author
+    public partial class Signup
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public author()
-        {
-            this.books = new HashSet<book>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string About { get; set; }
-        public string Image { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<book> books { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Gender { get; set; }
+        public string PhoneNumber { get; set; }
+        public System.DateTime DOB { get; set; }
+        public string Password { get; set; }
     }
 }

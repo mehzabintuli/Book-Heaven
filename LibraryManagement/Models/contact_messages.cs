@@ -12,18 +12,12 @@ namespace LibraryManagement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class book
+    public partial class contact_messages
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public int Author_Id { get; set; }
-        public string Genre { get; set; }
-        public string Language { get; set; }
-        public bool Available { get; set; }
-        public string Summary { get; set; }
-        public string Cover_Image { get; set; }
-        public string PDF_Link { get; set; }
-    
-        public virtual author author { get; set; }
+        public int id { get; set; }
+        public string email { get; set; }
+        public string subject { get; set; }
+        public string message { get; set; }
+        public System.DateTime created_at { get; set; }
     }
 }
