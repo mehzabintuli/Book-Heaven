@@ -29,8 +29,8 @@ namespace LibraryManagement.Models
         [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
 
-        [Required]
-        public string PasswordHash { get; set; }
+        //[Required]
+        //public string PasswordHash { get; set; }
 
         [NotMapped]
         [Required]

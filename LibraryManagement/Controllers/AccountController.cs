@@ -57,7 +57,7 @@ namespace LibraryManagement.Controllers
             {
                 try
                 {
-                    model.Password = HashPassword(model.Password);
+                    //model.Password = HashPassword(model.Password);
                     db.Signups.Add(model);
                     db.SaveChanges();
 
