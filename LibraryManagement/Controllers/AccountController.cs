@@ -32,10 +32,11 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var hashedPassword = HashPassword(model.PasswordHash);
-                var user = db.Signups.FirstOrDefault(u => u.Email == model.Email && u.Password == hashedPassword);
+                var Password = HashPassword(model.Password);
+                var user = db.Signups.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
+                    Session["UserEmail"] = user.Email;
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Invalid login attempt.");

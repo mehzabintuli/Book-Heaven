@@ -7,12 +7,21 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.IO;
+using System.Data.Entity;
 
 namespace LibraryManagement.Controllers
 {
     public class AdminController : Controller
     {
-        
+
+        public class BookHeaven : DbContext
+        {
+            public BookHeaven() : base("name=BookHeavenEntities")
+            {
+            }
+
+            public DbSet<contact_messages> contact_messages { get; set; }
+        }
 
         BookHeavenEntities db = new BookHeavenEntities();
 
@@ -65,8 +74,15 @@ namespace LibraryManagement.Controllers
         {
             // Logic to add contact message
         }
+      
 
-        
+        public ActionResult AdminMessage()
+        {
+            var messages = db.contact_messages.ToList();
+            return View(messages);
+        }
+
+
         public ActionResult AdminBook()
         {
             //string query = "SELECT * FROM Books";
@@ -333,5 +349,12 @@ namespace LibraryManagement.Controllers
 
             return View(author);
         }
+
+        public ActionResult AdminUserList()
+        {
+            var users = db.Signups.ToList();
+            return View(users);
+        }
+
     }
 }

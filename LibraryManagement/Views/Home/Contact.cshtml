@@ -1,7 +1,8 @@
-﻿@model dynamic
+﻿@model LibraryManagement.Models.contact_messages
+
 @{
     ViewBag.Title = "Contact Us";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // Use your main layout
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="contact-container">
@@ -27,7 +28,9 @@
     <div class="contact-right">
         <h1 class="contact-heading">Contact Us</h1>
         <div class="contact-form">
-            <form method="post" action="@Url.Action("Contact", "Home")">
+            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "contact-form" }))
+            {
+                @Html.AntiForgeryToken()
                 <div class="form-group">
                     <label for="Email">Email</label>
                     <input type="email" class="form-control" id="Email" name="Email" required>
@@ -45,7 +48,7 @@
                     <textarea class="form-control" id="Message" name="Message" rows="3" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary small-btn">Submit</button>
-            </form>
+            }
         </div>
     </div>
 </div>
@@ -69,7 +72,7 @@
     }
 
     .contact-image {
-        width: 16rem; /* 16x16 image size */
+        width: 16rem;
         height: 16rem;
         margin-bottom: 20px;
     }
@@ -129,7 +132,7 @@
     .contact-heading {
         font-size: 2.5em;
         margin-bottom: 20px;
-        color: #008000; /* Set heading color to green */
+        color: #008000;
     }
 
     .contact-form {
@@ -150,7 +153,7 @@
         }
 
     .btn-primary {
-        background-color: #008000; /* Set button color to green */
+        background-color: #008000;
         color: #FFF;
         border: none;
         border-radius: 5px;
@@ -162,3 +165,14 @@
             padding: 10px 20px;
         }
 </style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert('@TempData["SuccessMessage"]');
+    </script>
+}
