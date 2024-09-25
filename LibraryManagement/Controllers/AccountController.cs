@@ -32,18 +32,33 @@ namespace LibraryManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var Password = HashPassword(model.Password);
-                var user = db.Signups.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
+                // Check if the login is from the admin (no hashing required for admin)
+                if (model.Email == "admin@gmail.com" && model.Password == "9900")
+                {
+                    Session["UserEmail"] = model.Email;
+                    return RedirectToAction("AdminBook", "Admin");
+                }
+
+                // Hash the entered password for regular users
+                var hashedPassword = HashPassword(model.Password);
+
+                // Check if the login is from a regular user (hashed password comparison)
+                var user = db.Signups.FirstOrDefault(u => u.Email == model.Email && u.Password == hashedPassword);
+
                 if (user != null)
                 {
+                    // Set session and redirect to Home page
                     Session["UserEmail"] = user.Email;
                     return RedirectToAction("Index", "Home");
                 }
+
+                // If no user is found, show error
                 ModelState.AddModelError("", "Invalid login attempt.");
             }
 
             return View(model);
         }
+
 
         // GET: Account/SignUp
         public ActionResult SignUp()
@@ -58,7 +73,9 @@ namespace LibraryManagement.Controllers
             {
                 try
                 {
-                    //model.Password = HashPassword(model.Password);
+                    // Hash the password before saving it
+                    model.Password = HashPassword(model.Password);
+
                     db.Signups.Add(model);
                     db.SaveChanges();
 
@@ -74,6 +91,7 @@ namespace LibraryManagement.Controllers
 
             return View(model);
         }
+
 
         // GET: Account/Logout
         public ActionResult Logout()
