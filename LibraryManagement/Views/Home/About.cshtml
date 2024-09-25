@@ -1,7 +1,7 @@
 ﻿@model dynamic
 @{
     ViewBag.Title = "About Us";
-    Layout = "~/Views/Shared/_NoNavLayout.cshtml"; // Use your main layout
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml";
 }
 
 <div class="about-container">
@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<a href="@Url.Action("Landing", "Account")" class="go-back">
+<a href="@Url.Action("Index", "Home")" class="go-back">
     <img src="~/Content/Images/goback.png" alt="Go Back Icon" class="small-icon">
 </a>
 
@@ -115,5 +115,6 @@
     .small-icon {
         width: 32px;
         height: 32px;
+
     }
 </style>
