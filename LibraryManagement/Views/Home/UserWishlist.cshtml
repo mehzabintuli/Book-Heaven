@@ -1,0 +1,101 @@
+﻿@model LibraryManagement.Models.Wishlist
+
+@{
+    ViewBag.Title = "Add to Wishlist";
+
+}
+<div class="container py-5">
+    <h2 class="text-center mb-4">Add to Wishlist</h2>
+
+    <div class="row justify-content-center align-items-center">
+        <!-- Form Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    @using (Html.BeginForm("AddToWishlist", "Home", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(m => m.id)
+
+                        <div class="form-group mb-3">
+                            <label for="BookName" class="form-label">Book Name</label>
+                            @Html.TextBoxFor(m => m.Bookname, new { @class = "form-control", @id = "BookName", placeholder = "Enter the book name" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="AuthorName" class="form-label">Author Name</label>
+                            @Html.TextBoxFor(m => m.Authorname, new { @class = "form-control", @id = "AuthorName", placeholder = "Enter the author's name" })
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Add to Wishlist</button>
+                    }
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-success mt-3">@ViewBag.Message</div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="col-md-4 text-center mt-4 mt-md-0">
+            <div class="card shadow-sm">
+                <img src="@ViewBag.BookImageUrl" alt="Book Image" class="card-img-top" style="width: 100%; height: auto;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS Styles -->
+<style>
+    .container {
+        max-width: 900px;
+    }
+
+    h2 {
+        color: #007BFF; /* Changed color to blue */
+        font-weight: bold;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #007BFF; /* Changed button color to blue */
+        border: none;
+        font-size: 1.1rem;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue for hover */
+        }
+
+    .alert {
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
+    .card-img-top {
+        border-radius: 10px;
+    }
+
+    .row.align-items-center {
+        align-items: center; /* Ensures form and image are aligned vertically */
+    }
+</style>

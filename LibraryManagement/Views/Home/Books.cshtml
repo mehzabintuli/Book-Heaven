@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Books";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Books</h2>
+<h2 class="text-center mb-4">Book Lists</h2>
 
 <div class="d-flex justify-content-end mb-3">
     <form asp-action="Books" method="get" class="form-inline my-2 my-lg-0">
@@ -16,36 +17,39 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th style="width: 25%;">Details</th>
-            <th>Summary</th>
-            <th>Books</th>
+            <th style="background-color: #007BFF; color: white;">Title</th> <!-- Change header color -->
+            <th style="background-color: #007BFF; color: white;">Details</th>
+            <th style="background-color: #007BFF; color: white;">Summary</th>
+            <th style="background-color: #007BFF; color: white;">Cover</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var book in Model)
         {
             <tr>
-                <td>@book.Id</td>
+                <td>@book.Title</td>
                 <td>
-                    <strong>Title:</strong> @book.Title <br />
-                    <strong>Author:</strong> @book.Author <br />
+                    <strong>Author:</strong> @book.Author_Id <br />
                     <strong>Genre:</strong> @book.Genre <br />
                     <strong>Language:</strong> @book.Language <br />
-                    <strong>Available:</strong> @(book.IsAvailable ? "Yes" : "No") <br />
-                    @if (book.IsAvailable)
-                    {
-                        <a href="@Url.Action("Borrow", "Home", new { id = book.Id })" class="btn btn-success">Borrow</a>
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("AddToList", "Home", new { id = book.Id })" class="btn btn-warning">Add to List</a>
-                    }
-                    <a href="@Url.Content(book.PdfUrl)" class="btn btn-primary ml-2">PDF</a>
+                    <strong>Available:</strong> @(book.Available ? "Yes" : "No") <br />
+                    <div class="mt-2">
+                        @if (book.Available)
+                        {
+                            <a href="@Url.Action("Borrow", "Home", new { id = book.Id })" class="btn btn-success btn-sm">Borrow</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("UserWishlist", "Home", new { id = book.Id })" class="btn btn-light-purple btn-sm">Add to List</a>
+                        }
+
+                        <a href="@Url.Content(book.PDF_Link)" class="btn btn-sm ml-2" style="background-color: #FFA500; color: white;">PDF</a>
+
+                    </div>
                 </td>
                 <td>@book.Summary</td>
                 <td>
-                    <img src="@book.ImageUrl" alt="@book.Title" style="width: 100px; height: auto;" />
+                    <img src="@book.Cover_Image" alt="@book.Title" class="img-thumbnail" style="width: 100px; height: auto;" />
                 </td>
             </tr>
         }
@@ -63,3 +67,29 @@
         <a href="@Url.Action("Books", new { page = ViewBag.CurrentPage + 1, searchString = ViewBag.SearchString })" class="btn btn-primary">Next</a>
     }
 </div>
+
+<!-- CSS Styles -->
+<style>
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .table tbody tr {
+            background-color: white; /* All rows default to white */
+        }
+
+            .table tbody tr:hover {
+                background-color: #f1f1f1; /* Light gray on hover */
+            }
+
+    .btn-light-purple {
+        background-color: #D8BFD8; /* Light Purple */
+        border: none;
+        color: #000; /* Adjust text color for visibility */
+    }
+
+        .btn-light-purple:hover {
+            background-color: #C8A2C8; /* Slightly darker on hover */
+        }
+</style>

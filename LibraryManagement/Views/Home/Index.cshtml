@@ -1,14 +1,19 @@
 ﻿@{
     ViewBag.Title = "Main Page";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // Use your layout if you have one
+    Layout = "~/Views/Shared/IndexLayout.cshtml";
 }
 
-<div class="text-center mt-5">
-    <h2>Welcome to Book Heaven</h2>
-    <p>To meet up your expectations</p>
-</div>
+<!-- Hero Section with Welcome Text -->
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">Welcome to <span class="highlight">Book Heaven</span></h1>
+        <p class="hero-subtitle">Discover a world of books that meet your expectations.</p>
+        <a href="#featuredSections" class="btn btn-primary btn-lg mt-4">Explore More</a>
+    </div>
+</section>
 
-<div id="indexCarousel" class="carousel slide mt-4" data-ride="carousel">
+<!-- Carousel Section -->
+<div id="indexCarousel" class="carousel slide mt-5" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#indexCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#indexCarousel" data-slide-to="1"></li>
@@ -16,13 +21,25 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="~/Content/Images/index1.jpg" class="d-block w-100" alt="Index 1">
+            <img src="~/Content/Images/index1.jpg" class="d-block w-100" alt="Bookshelf 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Discover New Books</h5>
+                <p>A collection of the latest arrivals just for you.</p>
+            </div>
         </div>
         <div class="carousel-item">
-            <img src="~/Content/Images/index2.jpg" class="d-block w-100" alt="Index 2">
+            <img src="~/Content/Images/index2.jpg" class="d-block w-100" alt="Bookshelf 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Dive Into Classics</h5>
+                <p>Explore timeless literary classics.</p>
+            </div>
         </div>
         <div class="carousel-item">
-            <img src="~/Content/Images/index3.jpg" class="d-block w-100" alt="Index 3">
+            <img src="~/Content/Images/index3.jpg" class="d-block w-100" alt="Bookshelf 3">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Genres for Everyone</h5>
+                <p>A variety of genres to suit every reader's taste.</p>
+            </div>
         </div>
     </div>
     <a class="carousel-control-prev" href="#indexCarousel" role="button" data-slide="prev">
@@ -35,21 +52,105 @@
     </a>
 </div>
 
+<!-- Featured Sections (Books, Authors, Contact Us) -->
+<section id="featuredSections" class="featured-books-section mt-5">
+    <div class="container">
+        <h2 class="section-title text-center">Explore More</h2>
+        <div class="row">
+            <!-- Books Section -->
+            <div class="col-md-4">
+                <div class="card book-card">
+                    <img src="~/Content/Images/Book_Cov.jpg" class="card-img-top" alt="Books">
+                    <div class="card-body">
+                        <h5 class="card-title">Books</h5>
+                        <p class="card-text">Browse our extensive collection of books from here.</p>
+                        <a href="@Url.Action("Books", "Home")" class="btn btn-primary">View Books</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Authors Section -->
+            <div class="col-md-4">
+                <div class="card book-card">
+                    <img src="~/Content/Images/Auth_Cov.jpg" class="card-img-top" alt="Authors">
+                    <div class="card-body">
+                        <h5 class="card-title">Authors</h5>
+                        <p class="card-text">Meet the authors behind your favorite books.</p>
+                        <a href="@Url.Action("Authors", "Home")" class="btn btn-primary">View Authors</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact Us Section -->
+            <div class="col-md-4">
+                <div class="card book-card">
+                    <img src="~/Content/Images/Cont_Cov.jpg" class="card-img-top" alt="Contact Us">
+                    <div class="card-body">
+                        <h5 class="card-title">Contact Us</h5>
+                        <p class="card-text">Get in touch with us for any queries or support.</p>
+                        <a href="@Url.Action("Contact", "Home")" class="btn btn-primary">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Custom CSS -->
 <style>
-    .text-center {
-        text-align: center;
+    .hero-section {
+        background: linear-gradient(135deg, #6e85b7, #b9e0ff);
+        color: white;
+        padding: 100px 0;
     }
 
-    .mt-5 {
-        margin-top: 5rem;
+    .hero-title {
+        font-size: 3rem;
+        font-weight: bold;
     }
 
-    .mt-4 {
-        margin-top: 4rem;
+    .highlight {
+        color: #ffc107;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .carousel-item img {
-        height: 400px;
+        height: 500px;
         object-fit: cover;
     }
+
+    .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .book-card {
+        transition: transform 0.3s;
+    }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .book-card img {
+            height: 250px;
+            object-fit: cover;
+        }
+
+    .btn-primary {
+        background-color: #4a90e2;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #357abd;
+        }
 </style>

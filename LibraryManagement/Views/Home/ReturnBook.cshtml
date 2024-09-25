@@ -1,0 +1,94 @@
+﻿@model LibraryManagement.Models.ReturnBook
+
+@{
+    ViewBag.Title = "Return Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-primary">Return the books you have borrowed</h2>
+
+    <div class="row justify-content-center align-items-stretch">
+        <!-- Form Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    @using (Html.BeginForm("CreateReturnRequest", "Home", FormMethod.Post))
+                    {
+                        <div class="form-group mb-3">
+                            <label for="Name">Name</label>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @id = "Name", placeholder = "Enter your name" })
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Email">Email</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "Email", placeholder = "Enter your email" })
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="ReturnDate">Book Return Date</label>
+                            @Html.TextBoxFor(m => m.ReturnDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @id = "ReturnDate", @type = "date" })
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Confirm</button>
+                    }
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-success mt-3">@ViewBag.Message</div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <img src="@ViewBag.BookImageUrl" alt="Book Image" class="card-img-top" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS Styles -->
+<style>
+    .container {
+        max-width: 900px;
+    }
+
+    h2 {
+        color: #007BFF; /* Changed color to blue */
+        font-weight: bold;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #007BFF; /* Changed button color to blue */
+        border: none;
+        font-size: 1.1rem;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue for hover */
+        }
+
+    .alert {
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+</style>

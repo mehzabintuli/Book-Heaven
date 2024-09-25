@@ -314,6 +314,9 @@
     <Content Include="Views\Home\Policy.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Shared\IndexLayout.cshtml" />
+    <Content Include="Views\Home\EditUserAccount.cshtml" />
+    <Content Include="Views\Home\ReturnBook.cshtml" />
+    <Content Include="Views\Home\UserWishlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

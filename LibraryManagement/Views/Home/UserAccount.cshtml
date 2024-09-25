@@ -1,55 +1,68 @@
 ﻿@model LibraryManagement.Models.Signup
 
 @{
-    ViewBag.Title = "User Account";
+    ViewBag.Title = "Edit User Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>User Account</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Edit My Profile</h2>
 
-<div class="form-horizontal">
-    <h4>Account Details</h4>
-    <hr />
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("EditUserAccount", "Home", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @readonly = "readonly" })
+        <!-- First Name and Last Name -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+            </div>
+            @Html.LabelFor(model => model.LastName, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @readonly = "readonly" })
+        <!-- Email (readonly) -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Email, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly", @placeholder = "Your Email Address" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
+        <!-- Gender and Phone Number -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Gender, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Gender, new { @class = "form-control", @placeholder = "Gender" })
+            </div>
+            @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Gender, new { @class = "form-control", @readonly = "readonly" })
+        <!-- DOB and Password -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.DOB, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            </div>
+            @Html.LabelFor(model => model.Password, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @readonly = "readonly", @placeholder = "Password" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @readonly = "readonly" })
+        <!-- Submit and Back Buttons -->
+        <div class="form-group row">
+            <div class="col-md-10 offset-md-2">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="@Url.Action("UserAccount", "Home")" class="btn btn-secondary ml-2">Back</a>
+            </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DOB, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.DOB, new { @class = "form-control", @readonly = "readonly", type = "date" })
-        </div>
-    </div>
+    }
 </div>
