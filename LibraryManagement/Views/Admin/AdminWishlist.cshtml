@@ -1,7 +1,76 @@
-﻿
+﻿@model IEnumerable<LibraryManagement.Models.Wishlist>
 @{
-    ViewBag.Title = "AdminWishlist";
+    ViewBag.Title = "Admin Wishlist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>AdminWishlist</h2>
+<div class="container-fluid">
+    <h2 class="text-center mb-4">Admin Wishlist</h2>
 
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Book Name</th>
+                <th>Author Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.Bookname</td>
+                    <td>@item.Authorname</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container-fluid {
+        padding: 30px;
+        background-color: #f8f9fa; /* Light background for contrast */
+        border-radius: 5px; /* Rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        width: 100%; /* Ensure full width */
+    }
+
+    h2 {
+        color: #343a40; /* Darker heading color */
+        font-weight: bold; /* Bold heading */
+    }
+
+    .table {
+        background-color: white; /* White background for table */
+        border-radius: 5px; /* Rounded corners */
+        width: 100%; /* Ensure full width of table */
+    }
+
+    .thead-dark th {
+        background-color: #007bff; /* Bootstrap primary color for header */
+        color: white; /* White text in header */
+        padding: 15px; /* Increased padding for more space */
+        text-align: left; /* Align text to the left */
+    }
+
+    .table td {
+        vertical-align: middle; /* Center content vertically */
+        padding: 25px; /* Padding for table cells */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef; /* Light grey background on hover */
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed; /* Forces table to respect widths */
+
+    }
+</style>
