@@ -33,7 +33,7 @@
             <h1>What's <span class="highlight">New</span>? </h1>
             <p>Discover the latest additions and updates to our library collection. Want to know more about our website? Click on the button below.</p>
             <div class="learn-more-button">
-                @Html.ActionLink("Learn More", "About", "Home", new { area = "" }, new { @class = "btn btn-learn-more" })
+                @Html.ActionLink("Learn More", "learnmore", "Home", new { area = "" }, new { @class = "btn btn-learn-more" })
             </div>
             <div class="additional-image">
                 <img src="~/Content/Images/slide5.jpg" alt="additional-slider">
@@ -164,5 +164,6 @@
 
         .search-link:hover {
             background-color: #0056b3; /* Darker shade for hover */
+
         }
 </style>
