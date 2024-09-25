@@ -34,17 +34,25 @@ namespace LibraryManagement.Controllers
             return View();
         }
         // GET: Home
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult About()
         {
             return View();
         }
 
         public ActionResult Contact()
+        {
+            return View();
+        }
+        public ActionResult LearnMore()
+        {
+            return View();
+        }
+
+         public ActionResult Policy()
+        {
+            return View();
+        }
+        public ActionResult Terms()
         {
             return View();
         }

@@ -1,33 +1,58 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Book Heaven</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+    <style>
+        /* Ensure consistent width for navbar, footer, and content */
+        .navbar, .footer, .container {
+            max-width: 100%; /* or any fixed width you prefer */
+            margin: 0 auto; /* center the container */
+        }
+    </style>
 </head>
+
+
+
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.Raw("<a class='navbar-brand' href='" + Url.Action("Index", "Home") + "'><img src='" + Url.Content("~/Content/Images/index icon.png") + "' alt='Book Icon' style='height:28px; width:28px;' /> BOOK HEAVEN</a>")
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <!-- Centered Logo and Brand Name -->
+                <a class="navbar-brand d-flex align-items-center" href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/Content/Images/index icon.png")" alt="Book Icon" style="height:28px; width:28px;" />
+                    <span class="ml-2">BOOK HEAVEN</span>
+                </a>
+
+                <!-- Centered Navbar Links -->
                 <ul class="navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Books", "Books", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Authors", "Authors", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("My Account", "UserAccount", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Books", "Books", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Authors", "Authors", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("My Account", "UserAccount", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact Us", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Wishlist", "UserWishlist", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Return Book", "ReturnBook", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
+            </div>
+
+            <!-- Right-Aligned Logout Button -->
+            <div class="ml-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Logout", "Account")">Logout</a>
                     </li>
@@ -35,45 +60,56 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">        @RenderBody()
-        <hr />
-        <footer class="footer mt-auto py-3 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h5>Privacy Policy</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Terms of Use</a></li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <h5>Help Center</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Report a Problem</a></li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <h5>Find Us</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Web Link</a></li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <h5>Follow Us</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">FACEBOOK</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="text-center">© Copyright  @DateTime.Now.Year- Book Heaven Online Library. All rights reserved.</p>
-            </div>
-        </footer>
+
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        @RenderBody()
     </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-light mt-5 py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Privacy Policy</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("Policy", "Home")">Our Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Help Center</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("Contact", "Home")">Report a Problem</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("About", "Home")">Learn More</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Terms of Use</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("Terms", "Home")">Our Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-center">© @DateTime.Now.Year - Book Heaven Online Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/respond.js"></script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

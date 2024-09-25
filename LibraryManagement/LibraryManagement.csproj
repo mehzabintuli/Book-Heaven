@@ -313,9 +313,12 @@
     <Content Include="Views\Home\LearnMore.cshtml" />
     <Content Include="Views\Home\Policy.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Shared\IndexLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
+    <Folder Include="Views\IndexLayout\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
