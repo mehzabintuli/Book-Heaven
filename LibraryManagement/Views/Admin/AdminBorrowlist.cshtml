@@ -1,32 +1,99 @@
-﻿@model IEnumerable<LibraryManagement.Controllers.HomeController.BorrowModel>
+﻿@model IEnumerable<LibraryManagement.Models.BorrowBook>
 
 @{
     ViewBag.Title = "Borrow Requests";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Borrow Requests</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>Issue Date</th>
-            <th>Return Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var request in Model)
-        {
+<div class="container">
+    <h2>Borrow Requests</h2>
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@request.Name</td>
-                <td>@request.Email</td>
-                <td>@request.Contact</td>
-                <td>@request.IssueDate.ToString("yyyy-MM-dd")</td>
-                <td>@request.ReturnDate.ToString("yyyy-MM-dd")</td>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@request.Name</td>
+                    <td>@request.Email</td>
+                    <td>@request.Contact</td>
+                    <td>@request.BookIssueDate.ToString("yyyy-MM-dd")</td>
+                    <td>@request.BookReturnDate.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a href="@Url.Action("AdminBorrowList", "Admin", new { page = ViewBag.CurrentPage - 1 })" class="btn btn-primary">Previous</a>
         }
-    </tbody>
-</table>
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a href="@Url.Action("AdminBorrowList", "Admin", new { page = ViewBag.CurrentPage + 1 })" class="btn btn-primary ml-auto">Next</a>
+        }
+    </div>
+</div>
+
+<!-- CSS for improved table layout -->
+<style>
+    h2 {
+        color: #0056b3;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+    }
+
+    .table-header th {
+        background-color: #0056b3;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-align: left;
+        padding: 15px; /* Increased padding for header cells */
+    }
+
+    .table td {
+        padding: 15px 20px; /* Increased padding for data cells */
+        color: #333;
+        font-size: 16px; /* Increased font size */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f3f5;
+    }
+
+    .actions {
+        text-align: center;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Space between buttons */
+    }
+
+    .btn {
+        width: 100px; /* Uniform button width */
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed; /* Forces table to respect widths */
+    }
+</style>
