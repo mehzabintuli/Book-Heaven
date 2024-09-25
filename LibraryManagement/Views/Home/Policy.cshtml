@@ -1,7 +1,134 @@
-﻿
-@{
-    ViewBag.Title = "Policy";
+﻿@{
+    ViewBag.Title = "Privacy Policy";
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml";
 }
 
-<h2>Policy</h2>
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">Privacy Policy</h1>
 
+    <p>
+        Welcome to <strong>Book Heaven</strong>. We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains what information we collect, how we use it, and what rights you have in relation to it. Please take a moment to read through it carefully.
+    </p>
+
+    <h3>1. Information We Collect</h3>
+    <p>
+        We collect various types of information in connection with the services we provide, including:
+    </p>
+    <ul>
+        <li>
+            <strong>Personal Information:</strong> Name, email address, contact details, and any other information you provide when registering or using our services.
+        </li>
+        <li>
+            <strong>Account Information:</strong> Information about your library account, such as the books you have borrowed, due dates, and reading preferences.
+        </li>
+        <li>
+            <strong>Usage Data:</strong> Information about how you use our website, such as IP address, browser type, and pages visited.
+        </li>
+        <li>
+            <strong>Cookies:</strong> We use cookies and similar tracking technologies to track the activity on our website and store certain information.
+        </li>
+    </ul>
+
+    <h3>2. How We Use Your Information</h3>
+    <p>We use the collected information for various purposes, including:</p>
+    <ul>
+        <li>To provide, maintain, and improve our services.</li>
+        <li>To manage your account and provide customer support.</li>
+        <li>To send you notifications about your account and updates to our services.</li>
+        <li>To personalize your experience and suggest books based on your interests.</li>
+        <li>To improve our website and resolve technical issues.</li>
+    </ul>
+
+    <h3>3. Sharing Your Information</h3>
+    <p>
+        We do not share your personal information with third parties except in the following circumstances:
+    </p>
+    <ul>
+        <li>With your consent or at your direction.</li>
+        <li>With service providers who assist us in operating our website and services, under strict confidentiality agreements.</li>
+        <li>If required by law or in response to a legal process.</li>
+    </ul>
+
+    <h3>4. Data Security</h3>
+    <p>
+        We take reasonable steps to protect the security of your personal information. However, no internet transmission or electronic storage is completely secure, and we cannot guarantee the absolute security of your information.
+    </p>
+
+    <h3>5. Your Data Protection Rights</h3>
+    <p>
+        Depending on your location, you may have the following rights regarding your personal information:
+    </p>
+    <ul>
+        <li>
+            <strong>Access:</strong> You can request a copy of the personal information we hold about you.
+        </li>
+        <li>
+            <strong>Correction:</strong> You can ask us to correct any inaccurate or incomplete information.
+        </li>
+        <li>
+            <strong>Deletion:</strong> You can request that we delete your personal information, subject to certain legal limitations.
+        </li>
+        <li>
+            <strong>Restriction:</strong> You can request that we restrict the processing of your personal information in certain situations.
+        </li>
+        <li>
+            <strong>Objection:</strong> You can object to our processing of your personal information in certain circumstances.
+        </li>
+    </ul>
+
+    <h3>6. Children's Privacy</h3>
+    <p>
+        Our services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are aware that a child has provided us with personal information, please contact us, and we will take steps to delete such information.
+    </p>
+
+    <h3>7. Changes to This Privacy Policy</h3>
+    <p>
+        We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the bottom of this policy.
+    </p>
+
+</div>
+<a href="@Url.Action("Index", "Home")" class="go-back">
+    <img src="~/Content/Images/goback.png" alt="Go Back Icon" class="small-icon">
+</a>
+<!-- Custom CSS for Privacy Policy Page -->
+<style>
+    .container {
+        max-width: 800px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h1, h3 {
+        color: #333;
+    }
+
+    p, ul, li {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+
+    address {
+        font-style: normal;
+        line-height: 1.6;
+    }
+
+    .go-back {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        text-decoration: none;
+    }
+
+    .small-icon {
+        width: 32px;
+        height: 32px;
+
+    }
+</style>
