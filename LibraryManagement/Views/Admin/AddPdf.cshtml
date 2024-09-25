@@ -1,4 +1,4 @@
-﻿@model LibraryManagement.Models.Book
+﻿@model LibraryManagement.Models.book
 @{
     ViewBag.Title = "Add PDF";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,7 +9,7 @@
 @using (Html.BeginForm("AddPdf", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Id)
+    @* @Html.HiddenFor(model => model.Id)*@
 
     <div class="form-group">
         <label for="pdfFile">Upload PDF</label>

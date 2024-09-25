@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LibraryManagement.Models.Author>
+﻿@model IEnumerable<LibraryManagement.Models.author>
 
 @{
     ViewBag.Title = "Admin - Manage Authors";
@@ -10,6 +10,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                @* <th>ID</th>*@
                 <th>Image</th>
                 <th>Name</th>
                 <th>About</th>
@@ -21,20 +22,27 @@
             @foreach (var author in Model)
             {
                 <tr>
-                    <td><img src="@author.ImageUrl" alt="@author.Name" class="img-thumbnail" style="max-height: 100px;" /></td>
+                    @*<td>@author.Id</td>*@
+                    <td><img src="@author.Image" alt="@author.Name" style="width: 100px; height: auto;" /></td>
                     <td>@author.Name</td>
                     <td>@author.About</td>
                     <td>
                         <ul>
-                            @foreach (var book in author.Books)
+                            @foreach (var book in author.books)
                             {
                                 <li>@book.Title</li>
                             }
                         </ul>
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "EditAuthor", new { id = author.Id }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Delete", "DeleteAuthor", new { id = author.Id }, new { @class = "btn btn-danger" })
+                    <td class="actions">
+                        <div class="btn-group" role="group">
+                            @Html.ActionLink("Edit", "EditAuthor", new { id = author.Id }, new { @class = "btn btn-primary" })
+                            @using (Html.BeginForm("DeleteAuthor", "Admin", new { id = author.Id }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this author?');" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            }
+                        </div>
                     </td>
                 </tr>
             }
@@ -42,3 +50,19 @@
     </table>
     @Html.ActionLink("Add New Author", "CreateAuthor", "Admin", null, new { @class = "btn btn-success" })
 </div>
+
+<style>
+    .actions {
+        text-align: center;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Space between buttons */
+    }
+
+    .btn {
+        width: 100px; /* Uniform button width */
+    }
+</style>
