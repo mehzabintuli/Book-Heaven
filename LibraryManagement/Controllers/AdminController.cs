@@ -9,6 +9,7 @@ using System.Web.Security;
 using System.IO;
 using System.Data.Entity;
 using static LibraryManagement.Controllers.HomeController;
+using System.Net;
 
 namespace LibraryManagement.Controllers
 {
@@ -77,7 +78,7 @@ namespace LibraryManagement.Controllers
         }
 
 
-        public ActionResult AdminBook(int page = 1, int pageSize = 8)
+        public ActionResult AdminBook(int page = 1, int pageSize = 5)
         {
             // Retrieve all books
             var books = db.books.ToList();
@@ -96,9 +97,17 @@ namespace LibraryManagement.Controllers
         }
 
 
+
+
+
         [HttpGet]
         public ActionResult CreateBook()
         {
+            var book = new LibraryManagement.Models.book
+            {
+                Cover_Image = null,  // Explicitly set to null
+                PDF_Link = null      // Explicitly set to null
+            };
 
             var authors = db.authors.Select(a => new SelectListItem
             {
@@ -106,41 +115,83 @@ namespace LibraryManagement.Controllers
                 Text = a.Name
             }).ToList();
 
-            ViewBag.AuthorList = authors;  // Pass the list to the view using ViewBag
+            ViewBag.AuthorList = authors;
 
-            return View();
+            return View(book);
         }
+
+
 
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateBook([Bind(Include = "Id,Title,Author_Id,Genre,Language,Available,Cover_Image,PDF_Link,Summary")] LibraryManagement.Models.book book)
+        public ActionResult CreateBook([Bind(Include = "Id,Title,Author_Id,Genre,Language,Available,Cover_Image,PDF_Link,Summary")] LibraryManagement.Models.book book, HttpPostedFileBase CoverImage, HttpPostedFileBase PDFFile)
         {
             if (ModelState.IsValid)
             {
+                // Handle cover image upload
+                if (CoverImage != null && CoverImage.ContentLength > 0)
+                {
+                    // Set the path for the uploaded image
+                    string imageFileName = Path.GetFileName(CoverImage.FileName);
+                    string imagePath = Path.Combine(Server.MapPath("~/Content/Images"), imageFileName);
+
+                    // Save the image file to the server
+                    CoverImage.SaveAs(imagePath);
+
+                    // Update the Cover_Image field with the path to the new image
+                    book.Cover_Image = "/Content/Images/" + imageFileName;
+                }
+                else
+                {
+                    // No new image uploaded, set Cover_Image to null or retain the old value
+                    book.Cover_Image = null;
+                }
+
+                // Handle PDF file upload
+                if (PDFFile != null && PDFFile.ContentLength > 0)
+                {
+                    // Set the path for the uploaded PDF
+                    string pdfFileName = Path.GetFileName(PDFFile.FileName);
+                    string pdfPath = Path.Combine(Server.MapPath("~/Content/PDFs"), pdfFileName);
+
+                    // Save the PDF file to the server
+                    PDFFile.SaveAs(pdfPath);
+
+                    // Update the PDF_Link field with the path to the new PDF
+                    book.PDF_Link = "/Content/PDFs/" + pdfFileName;
+                }
+                else
+                {
+                    // No new PDF uploaded, set PDF_Link to null or retain the old value
+                    book.PDF_Link = null;
+                }
+
+                // Add the new book to the database
                 db.books.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("AdminBook");
             }
-            else
+
+            // If model state is invalid, repopulate the author list and return to the view
+            var authors = db.authors.Select(a => new SelectListItem
             {
-                // Check for errors
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                foreach (var error in errors)
-                {
-                    System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
-                }
-            }
+                Value = a.Id.ToString(),
+                Text = a.Name
+            }).ToList();
+
+            ViewBag.AuthorList = authors;
 
             return View(book);
         }
+
 
         public ActionResult EditBook(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var book = db.books.Find(id);
@@ -159,18 +210,62 @@ namespace LibraryManagement.Controllers
             return View(book);
         }
 
+        // POST: Admin/EditBook
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditBook([Bind(Include = "Id,Title,Author_Id,Genre,Language,Available,Cover_Image,PDF_Link,Summary")] book book)
+        public ActionResult EditBook([Bind(Include = "Id,Title,Author_Id,Genre,Language,Available,Cover_Image,PDF_Link,Summary")] book book, HttpPostedFileBase CoverImage, HttpPostedFileBase PDFFile)
         {
+            string coverImage = db.books.Where(book_prev => book_prev.Id == book.Id)
+                                .Select(book_prev => book_prev.Cover_Image)
+                                .FirstOrDefault();
+            string pdfLink = db.books.Where(book_prev => book_prev.Id == book.Id)
+                                .Select(book_prev => book_prev.PDF_Link)
+                                .FirstOrDefault();
             if (ModelState.IsValid)
             {
+                // Handle cover image upload
+                if (CoverImage != null && CoverImage.ContentLength > 0)
+                {
+                    // Set the path for the uploaded image
+                    string imageFileName = Path.GetFileName(CoverImage.FileName);
+                    string imagePath = Path.Combine(Server.MapPath("~/Content/Images"), imageFileName);
+
+                    // Save the image file to the server
+                    CoverImage.SaveAs(imagePath);
+
+                    // Update the Cover_Image field with the path to the new image
+                    book.Cover_Image = "/Content/Images/" + imageFileName;
+                }
+                else
+                {
+                    book.Cover_Image = coverImage;
+                }
+
+                // Handle PDF file upload
+                if (PDFFile != null && PDFFile.ContentLength > 0)
+                {
+                    // Set the path for the uploaded PDF
+                    string pdfFileName = Path.GetFileName(PDFFile.FileName);
+                    string pdfPath = Path.Combine(Server.MapPath("~/Content/PDFs"), pdfFileName);
+
+                    // Save the PDF file to the server
+                    PDFFile.SaveAs(pdfPath);
+
+                    // Update the PDF_Link field with the path to the new PDF
+                    book.PDF_Link = "/Content/PDFs/" + pdfFileName;
+                }
+                else
+                {
+                    book.PDF_Link = pdfLink;
+                }
+
+                // Mark the entity as modified and save the changes
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("AdminBook");
             }
 
-            // If the model state is invalid, repopulate the author list and return the view
+            // If model state is invalid, repopulate the author list and return to the view
             ViewBag.AuthorList = db.authors.Select(a => new SelectListItem
             {
                 Value = a.Id.ToString(),
@@ -179,6 +274,7 @@ namespace LibraryManagement.Controllers
 
             return View(book);
         }
+
 
 
         public ActionResult DeleteBook(int? id)
@@ -320,16 +416,23 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
+
         public ActionResult SendReply(string email, string message)
         {
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(message))
+            {
+                // Add your email sending logic here (e.g., send an email to the user)
+                System.Diagnostics.Debug.WriteLine("Reply sent to: " + email);
+                System.Diagnostics.Debug.WriteLine("Message: " + message);
 
+                // Return success message for AJAX
+                return Json(new { success = true, message = "Reply sent successfully!" });
+            }
 
-            System.Diagnostics.Debug.WriteLine("Reply sent to: " + email);
-            System.Diagnostics.Debug.WriteLine("Message: " + message);
-
-            TempData["SuccessMessage"] = "Reply sent successfully!";
-            return RedirectToAction("AdminMessage");
+            // Return failure message for AJAX
+            return Json(new { success = false, message = "Error: Reply could not be sent." });
         }
+
 
 
         public ActionResult AdminReturnBook()
