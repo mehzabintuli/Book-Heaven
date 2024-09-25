@@ -1,0 +1,82 @@
+﻿@model IEnumerable<LibraryManagement.Models.ReturnBook>
+
+@{
+    ViewBag.Title = "AdminReturnBook";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Returned Booklist</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Book Returning Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.ReturnDate.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    h2 {
+        color: #0056b3;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+    }
+
+    .table-header th {
+        background-color: #0056b3;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-align: left;
+        padding: 15px; /* Increased padding for header cells */
+    }
+
+    .table td {
+        padding: 15px 20px; /* Increased padding for data cells */
+        color: #333;
+        font-size: 16px; /* Increased font size */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f3f5;
+    }
+
+    .actions {
+        text-align: center;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Space between buttons */
+    }
+
+    .btn {
+        width: 100px; /* Uniform button width */
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed; /* Forces table to respect widths */
+    }
+</style>
+
