@@ -1,7 +1,118 @@
-﻿
+﻿@model dynamic
 @{
-    ViewBag.Title = "LearnMore";
+    ViewBag.Title = "Learn More";
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml";
 }
 
-<h2>LearnMore</h2>
+<div class="about-container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Content/Images/about.jpg" alt="Learn More" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+            <h1>Learn More</h1>
+            <p>
+                Welcome to the Learn More page, where you can discover a wide range of resources to enhance your knowledge and skills. Our platform is dedicated to providing valuable information and tools for learners of all levels.
+            </p>
+        </div>
+    </div>
 
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h4>Our Vision</h4>
+            <p>
+                Our vision is to empower individuals by providing them with access to quality educational resources. We aim to support personal and professional growth through a wealth of information and learning materials.
+            </p>
+
+            <h4>What We Offer</h4>
+            <p>Explore our diverse offerings, including:</p>
+            <ul>
+                <li><em>Online Courses</em>: Gain new skills through our curated selection of courses across various subjects.</li>
+                <li><em>Tutorials and Guides</em>: Access helpful tutorials and guides for self-paced learning.</li>
+                <li><em>Webinars and Workshops</em>: Join our live sessions to learn directly from experts.</li>
+                <li><em>Community Support</em>: Engage with fellow learners and educators through our community forums.</li>
+            </ul>
+
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <h4>Why Choose Us?</h4>
+                    <ul>
+                        <li>Flexible learning options that fit your schedule.</li>
+                        <li>User-friendly platform designed for all skill levels.</li>
+                        <li>Personalized recommendations to guide your learning journey.</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Content/Images/about1.jpg" alt="Why Choose Us" class="img-fluid">
+                </div>
+            </div>
+
+            <h4>Our History</h4>
+            <p>
+                Established in 2010, we have continually evolved to meet the changing needs of learners. Our platform has grown to include a vast array of resources, ensuring that we cater to diverse learning preferences.
+            </p>
+
+            <h4>Meet Our Team</h4>
+            <p>
+                Our dedicated team consists of educators, content creators, and technical support professionals who are committed to delivering an exceptional learning experience for all users.
+            </p>
+
+            <p>
+                Thank you for exploring our Learn More page. We look forward to being a part of your educational journey!
+            </p>
+        </div>
+    </div>
+</div>
+
+<a href="@Url.Action("Landing", "Account")" class="go-back">
+    <img src="~/Content/Images/goback.png" alt="Go Back Icon" class="small-icon">
+</a>
+
+<style>
+    .about-container {
+        padding: 50px;
+        background: #f8f8f8;
+    }
+
+        .about-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .about-container h1, .about-container h4 {
+            color: #4169e1; /* Example color for the headings */
+        }
+
+        .about-container p, .about-container ul {
+            margin-top: 20px;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .about-container ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+            .about-container ul li::before {
+                content: "\2022";
+                color: #0B504F; /* Bullet color */
+                font-weight: bold;
+                display: inline-block;
+                width: 1em;
+                margin-left: -1em;
+            }
+
+    .go-back {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        text-decoration: none;
+    }
+
+    .small-icon {
+        width: 32px;
+        height: 32px;
+
+    }
+</style>
