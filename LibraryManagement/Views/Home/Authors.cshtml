@@ -4,7 +4,6 @@
     ViewBag.Title = "Authors";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
 
 <style>
@@ -34,6 +33,19 @@
             height: 200px;
             object-fit: cover;
             margin-bottom: 10px;
+        }
+
+    .btn-yellow {
+        background-color: #ffc107; /* Bootstrap yellow color */
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-yellow:hover {
+            background-color: #e0a800; /* Darker shade for hover effect */
         }
 
     .pagination {
@@ -84,55 +96,56 @@
             }
 
     .navbar-nav {
-        justify-content: center; /* Centers the items */
+        justify-content: center;
     }
 </style>
+
 <div class="container">
-
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>Authors</h2>
-            <div class="search-bar">
-                <form action="@Url.Action("Authors", "Home")" method="get">
-                    <input type="text" name="searchTerm" placeholder="Search authors...">
-                    <button type="submit">Search</button>
-                </form>
-            </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Authors</h2>
+        <div class="search-bar">
+            <form action="@Url.Action("Authors", "Home")" method="get">
+                <input type="text" name="searchTerm" placeholder="Search authors...">
+                <button type="submit">Search</button>
+            </form>
         </div>
+    </div>
 
-        <div class="authors-list">
-            @foreach (var author in Model)
-            {
-                <div class="author-item">
-                    <img src="@author.Image" alt="@author.Name" />
-                    <h3>@author.Name</h3>
-                    <p>@author.About</p>
-                    <h6>Books:</h6>
+    <div class="authors-list">
+        @foreach (var author in Model)
+        {
+            <div class="author-item">
+                <img src="@author.Image" alt="@author.Name" />
+                <h3>@author.Name</h3>
+                <p>@author.About</p>
+                @*<h6>Books:</h6>
                     <ul>
                         @foreach (var book in author.Books)
                         {
                             <li>@book.Title</li>
                         }
-                    </ul>
-                </div>
-            }
+                    </ul>*@
+                <button class="btn-yellow" onclick="location.href='@Url.Action("AuthorBooks", "Home", new { authorId = author.Id })'">View Books</button>
 
-            @* Ensure that we always have 4 items in the authors-list by adding empty items if necessary *@
-            @for (int i = Model.Count(); i < 4; i++)
-            {
-                <div class="author-item" style="visibility: hidden;"></div>
-            }
-        </div>
+            </div>
+        }
 
-        <div class="pagination">
-            @if (ViewBag.CurrentPage > 1)
-            {
-                <button onclick="location.href='@Url.Action("Authors", "Home", new { page = ViewBag.CurrentPage - 1 })'">Previous</button>
-            }
-            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-            {
-                <button onclick="location.href='@Url.Action("Authors", "Home", new { page = ViewBag.CurrentPage + 1 })'">Next</button>
-            }
-        </div>
+
+
+        @for (int i = Model.Count(); i < 4; i++)
+        {
+            <div class="author-item" style="visibility: hidden;"></div>
+        }
+    </div>
+
+    <div class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <button onclick="location.href='@Url.Action("Authors", "Home", new { page = ViewBag.CurrentPage - 1 })'">Previous</button>
+        }
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <button onclick="location.href='@Url.Action("Authors", "Home", new { page = ViewBag.CurrentPage + 1 })'">Next</button>
+        }
     </div>
 </div>
