@@ -11,7 +11,7 @@ namespace LibraryManagement.Controllers
         // Sample data
         private List<book> GetBooks()
         {
-            return db.books.ToList(); 
+            return db.books.ToList();
             //return new List<LibraryBook>
             //{
             //    new LibraryBook { Id = 1, Title = "Teach Yourself C", Author = "Herbert Schildt", ImageUrl = "~/Content/Images/c.jpg" },
