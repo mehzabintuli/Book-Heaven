@@ -116,6 +116,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\BundleConfig3.cs" />
+    <Compile Include="App_Start\BundleConfig4.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -321,6 +322,7 @@
     <Content Include="Views\Home\UserWishlist.cshtml" />
     <Content Include="Views\Admin\AdminReturnBook.cshtml" />
     <Content Include="Views\Admin\DeleteBook.cshtml" />
+    <Content Include="Views\Home\AuthorBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

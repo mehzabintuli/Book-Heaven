@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LibraryManagement.Models.AuthorBook>
+
+@{
+    ViewBag.Title = "Author Books";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <h2>Author Books</h2>
+
+    @if (Model.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Author Name</th>
+                    <th>Book Title</th>
+                    <th>Publication Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.AuthorName</td>
+                        <td>@book.BookTitle</td>
+                        <td>@book.PublicationYear</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No books found in the AuthorBook table.</p>
+    }
+</div>
